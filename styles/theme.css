@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+:root {
+  /* palette */
+  --neutral-900: hsl(243, 96%, 9%);
+  --neutral-800: hsl(243, 27%, 20%);
+  --neutral-700: hsl(243, 23%, 24%);
+  --neutral-600: hsl(243, 23%, 30%);
+  --neutral-300: hsl(240, 6%, 70%);
+  --neutral-200: hsl(250, 6%, 84%);
+  --white: hsl(0, 0%, 100%);
+  --blue-700: hsl(248, 70%, 36%);
+  --blue-500: hsl(233, 67%, 56%);
+
+  /* semantic */
+  --background-body: var(--neutral-900);
+  --background-primary: var(--neutral-800);
+  --background-secondary: var(--neutral-700);
+  --background-secondary-hover: var(--neutral-600);
+  --background-tertiary: var(--neutral-600);
+  --accent-primary: var(--blue-500);
+  --accent-primary-hover: var(--blue-700);
+  --text-primary: var(--white);
+  --text-secondary: var(--neutral-200);
+  --text-placeholder: var(--neutral-300);
+}
+
+@theme inline {
+  --color-background-body: var(--background-body);
+  --color-background-primary: var(--background-primary);
+  --color-background-secondary: var(--background-secondary);
+  --color-background-secondary-hover: var(--background-secondary-hover);
+  --color-background-tertiary: var(--background-tertiary);
+  --color-accent-primary: var(--accent-primary);
+  --color-accent-primary-hover: var(--accent-primary-hover);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-placeholder: var(--text-placeholder);
+
+  /* nextjs font */
+  --font-primary: var(--font-bricolage-grotesque);
+  --font-secondary: var(--font-dm-sans);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    /* placeholder */
+    --background-body: var(--neutral-900);
+    --background-primary: var(--neutral-800);
+    --background-secondary: var(--neutral-700);
+    --background-secondary-hover: var(--neutral-700);
+    --background-tertiary: var(--neutral-600);
+    --accent-primary: var(--blue-500);
+    --accent-primary-hover: var(--blue-700);
+    --text-primary: var(--white);
+    --text-secondary: var(--neutral-200);
+    --text-placeholder: var(--neutral-300);
+  }
+}
