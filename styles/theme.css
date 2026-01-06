@@ -24,6 +24,7 @@
   --color-text-secondary: var(--neutral-200);
   --color-text-placeholder: var(--neutral-300);
   --font-size-headline: 48px;
+  --line-height-headline: 60px;
 }
 
 @theme inline {
@@ -39,6 +40,7 @@
   --color-text-placeholder: var(--color-text-placeholder);
 
   --text-headline: var(--font-size-headline);
+  --spacing-headline: var(--line-height-headline);
 
   /* nextjs font */
   --font-primary: var(--font-bricolage-grotesque);
