@@ -13,30 +13,30 @@
   --blue-500: hsl(233, 67%, 56%);
 
   /* semantic */
-  --background-body: var(--neutral-900);
-  --background-primary: var(--neutral-800);
-  --background-secondary: var(--neutral-700);
-  --background-secondary-hover: var(--neutral-600);
-  --background-tertiary: var(--neutral-600);
-  --accent-primary: var(--blue-500);
-  --accent-primary-hover: var(--blue-700);
-  --text-primary: var(--white);
-  --text-secondary: var(--neutral-200);
-  --text-placeholder: var(--neutral-300);
+  --color-background-body: var(--neutral-900);
+  --color-background-primary: var(--neutral-800);
+  --color-background-secondary: var(--neutral-700);
+  --color-background-secondary-hover: var(--neutral-600);
+  --color-background-tertiary: var(--neutral-600);
+  --color-accent-primary: var(--blue-500);
+  --color-accent-primary-hover: var(--blue-700);
+  --color-text-primary: var(--white);
+  --color-text-secondary: var(--neutral-200);
+  --color-text-placeholder: var(--neutral-300);
   --font-size-headline: 48px;
 }
 
 @theme inline {
-  --color-background-body: var(--background-body);
-  --color-background-primary: var(--background-primary);
-  --color-background-secondary: var(--background-secondary);
-  --color-background-secondary-hover: var(--background-secondary-hover);
-  --color-background-tertiary: var(--background-tertiary);
-  --color-accent-primary: var(--accent-primary);
-  --color-accent-primary-hover: var(--accent-primary-hover);
-  --color-text-primary: var(--text-primary);
-  --color-text-secondary: var(--text-secondary);
-  --color-text-placeholder: var(--text-placeholder);
+  --color-background-body: var(--color-background-body);
+  --color-background-primary: var(--color-background-primary);
+  --color-background-secondary: var(--color-background-secondary);
+  --color-background-secondary-hover: var(--color-background-secondary-hover);
+  --color-background-tertiary: var(--color-background-tertiary);
+  --color-accent-primary: var(--color-accent-primary);
+  --color-accent-primary-hover: var(--color-accent-primary-hover);
+  --color-text-primary: var(--color-text-primary);
+  --color-text-secondary: var(--color-text-secondary);
+  --color-text-placeholder: var(--color-text-placeholder);
 
   --text-headline: var(--font-size-headline);
 
@@ -48,15 +48,15 @@
 @media (prefers-color-scheme: light) {
   :root {
     /* placeholder */
-    --background-body: var(--neutral-900);
-    --background-primary: var(--neutral-800);
-    --background-secondary: var(--neutral-700);
-    --background-secondary-hover: var(--neutral-700);
-    --background-tertiary: var(--neutral-600);
-    --accent-primary: var(--blue-500);
-    --accent-primary-hover: var(--blue-700);
-    --text-primary: var(--white);
-    --text-secondary: var(--neutral-200);
-    --text-placeholder: var(--neutral-300);
+    --color-background-body: var(--neutral-900);
+    --color-background-primary: var(--neutral-800);
+    --color-background-secondary: var(--neutral-700);
+    --color-background-secondary-hover: var(--neutral-700);
+    --color-background-tertiary: var(--neutral-600);
+    --color-accent-primary: var(--blue-500);
+    --color-accent-primary-hover: var(--blue-700);
+    --color-text-primary: var(--white);
+    --color-text-secondary: var(--neutral-200);
+    --color-text-placeholder: var(--neutral-300);
   }
 }
