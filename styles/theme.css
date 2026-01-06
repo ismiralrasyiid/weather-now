@@ -23,6 +23,7 @@
   --text-primary: var(--white);
   --text-secondary: var(--neutral-200);
   --text-placeholder: var(--neutral-300);
+  --font-size-headline: 48px;
 }
 
 @theme inline {
@@ -36,6 +37,8 @@
   --color-text-primary: var(--text-primary);
   --color-text-secondary: var(--text-secondary);
   --color-text-placeholder: var(--text-placeholder);
+
+  --text-headline: var(--font-size-headline);
 
   /* nextjs font */
   --font-primary: var(--font-bricolage-grotesque);
