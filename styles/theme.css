@@ -32,6 +32,8 @@
   --height-hero-section: 255px;
   --font-size-hero-section-city: 26px;
   --font-size-hero-section-degree: 90px;
+
+  --width-scrollarea-thumb: 3px;
 }
 
 @theme inline {
@@ -54,6 +56,8 @@
   --spacing-hero-section: var(--height-hero-section);
   --text-hero-section-city: var(--font-size-hero-section-city);
   --text-hero-section-degree: var(--font-size-hero-section-degree);
+
+  --spacing-thumb: var(--width-scrollarea-thumb);
 
   /* nextjs font */
   --font-primary: var(--font-bricolage-grotesque);
