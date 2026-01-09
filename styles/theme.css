@@ -34,6 +34,7 @@
   --font-size-hero-section-degree: 90px;
 
   --width-scrollarea-thumb: 3px;
+  --height-scrollarea: 540px;
 
   --min-width-select: 195px;
 }
@@ -60,6 +61,7 @@
   --text-hero-section-degree: var(--font-size-hero-section-degree);
 
   --spacing-thumb: var(--width-scrollarea-thumb);
+  --spacing-scrollarea: var(--height-scrollarea);
 
   --spacing-select: var(--min-width-select);
 
