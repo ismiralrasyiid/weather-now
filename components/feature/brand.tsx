@@ -7,16 +7,18 @@ export default function Brand() {
       <Image
         className="lg:hidden"
         src="/logo.svg"
-        alt="Logo"
+        alt=""
         height={30}
         width={125}
+        aria-hidden
       />
       <Image
         className="hidden lg:block"
         src="/logo.svg"
-        alt="Logo"
+        alt=""
         height={36}
         width={175}
+        aria-hidden
       />
     </div>
   );
