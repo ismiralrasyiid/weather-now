@@ -10,7 +10,7 @@ export default function MenuDropdown() {
       >
         <Image
           src="/icon-units.svg"
-          alt="Units Icon"
+          alt=""
           width={13}
           height={13}
           aria-hidden
@@ -18,7 +18,7 @@ export default function MenuDropdown() {
         Units
         <Image
           src="/icon-dropdown.svg"
-          alt="Dropdown Icon"
+          alt=""
           width={9}
           height={9}
           aria-hidden
