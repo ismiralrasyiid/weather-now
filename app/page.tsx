@@ -4,10 +4,11 @@ import Headline from "@/components/feature/headline";
 import HeroSection from "@/components/feature/hero-section";
 import { HourlyForecasts } from "@/components/feature/hourly-forecasts";
 import { HourlyForecast } from "@/components/feature/hourly-forecasts/forecast";
+import Logo from "@/components/feature/logo";
+import { MenuDropdown } from "@/components/feature/menu-dropdown";
 import { Searchbar } from "@/components/feature/searchbar";
 import { WeatherDetails } from "@/components/feature/weather-details";
 import { MetricData } from "@/components/feature/weather-details/metric";
-import Navbar from "@/components/layout/navbar";
 
 const mockData = {
   metrics: Array.from<MetricData>({ length: 4 }).fill({
@@ -37,7 +38,10 @@ export default function Home() {
   return (
     <>
       <header>
-        <Navbar />
+        <nav className="flex items-center justify-between">
+          <Logo />
+          <MenuDropdown />
+        </nav>
       </header>
       <main>
         <Headline className="mt-9.5" />
