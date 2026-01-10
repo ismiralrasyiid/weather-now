@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-export default function Logo() {
+export default function Brand() {
   return (
     <div>
       <h1 className="sr-only">Weather Now</h1>

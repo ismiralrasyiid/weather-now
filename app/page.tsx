@@ -4,7 +4,7 @@ import Headline from "@/components/feature/headline";
 import HeroSection from "@/components/feature/hero-section";
 import { HourlyForecasts } from "@/components/feature/hourly-forecasts";
 import { HourlyForecast } from "@/components/feature/hourly-forecasts/forecast";
-import Logo from "@/components/feature/logo";
+import Brand from "@/components/feature/brand";
 import { MenuDropdown } from "@/components/feature/menu-dropdown";
 import { Searchbar } from "@/components/feature/searchbar";
 import { WeatherDetails } from "@/components/feature/weather-details";
@@ -37,9 +37,9 @@ const mockData = {
 export default function Home() {
   return (
     <>
-      <header>
-        <nav className="flex items-center justify-between">
-          <Logo />
+      <header className="flex items-center justify-between">
+        <Brand />
+        <nav>
           <MenuDropdown />
         </nav>
       </header>
