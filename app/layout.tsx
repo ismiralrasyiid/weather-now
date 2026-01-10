@@ -14,7 +14,8 @@ const dmSans = DM_Sans({
 
 export const metadata: Metadata = {
   title: "Weather Now",
-  description: "A modern weather application with real-time forecasts and location-based search.",
+  description:
+    "A modern weather application with real-time forecasts and location-based search.",
 };
 
 export default function RootLayout({
@@ -25,9 +26,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${bricolageGrotesque.variable} ${dmSans.variable} font-secondary antialiased`}
+        className={`${bricolageGrotesque.variable} ${dmSans.variable} antialiased`}
       >
-        {children}
+        <div className="min-h-dvh bg-background-body p-3.5 font-secondary text-text-primary">
+          {children}
+        </div>
       </body>
     </html>
   );
