@@ -9,7 +9,7 @@ export type WeatherDetailsProps = {
 export default function WeatherDetails(props: WeatherDetailsProps) {
   const { metrics, className } = props;
   return (
-    <div className={clsx("grid grid-cols-2 gap-4", className)}>
+    <div className={clsx("grid grid-cols-2 gap-4 sm:grid-cols-4", className)}>
       {metrics.map((metric, index) => (
         <Metric
           key={`metric-${index}`}

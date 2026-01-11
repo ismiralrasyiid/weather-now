@@ -5,11 +5,11 @@ export default function HeroSection({ className }: { className?: string }) {
   return (
     <div
       className={clsx(
-        "flex h-hero-section flex-col items-center justify-center rounded-xl bg-[url(@/public/bg-today-small.svg)] bg-cover bg-center",
+        "flex h-hero-section flex-col items-center justify-center rounded-xl bg-[url(@/public/bg-today-small.svg)] bg-cover bg-center md:flex-row md:justify-between md:bg-[url(@/public/bg-today-large.svg)] md:p-5",
         className,
       )}
     >
-      <div className="text-center">
+      <div className="text-center md:text-left">
         <h2 className="text-hero-section-city font-semibold">
           Berlin, Germany
         </h2>

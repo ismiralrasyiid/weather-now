@@ -46,16 +46,23 @@ export default function Home() {
       <main>
         <Headline className="mt-9.5 md:mt-14.5" />
         <Searchbar className="mt-8.5 md:mt-13.5" />
-        <HeroSection className="mt-7" />
-        <WeatherDetails className="mt-5" metrics={mockData.metrics} />
-        <DailyForecasts
-          className="mt-6.5"
-          forecasts={mockData.dailyForecasts}
-        />
-        <HourlyForecasts
-          className="mt-7.5"
-          forecasts={mockData.hourlyForecasts}
-        />
+        <div className="lg:mt-11 lg:grid lg:grid-cols-3 lg:gap-7.5">
+          <div className="lg:col-span-2">
+            <HeroSection className="mt-7 lg:mt-0" />
+            <WeatherDetails
+              className="mt-5 lg:mt-8.5"
+              metrics={mockData.metrics}
+            />
+            <DailyForecasts
+              className="mt-6.5 lg:mt-9.5"
+              forecasts={mockData.dailyForecasts}
+            />
+          </div>
+          <HourlyForecasts
+            className="mt-7.5 lg:mt-0"
+            forecasts={mockData.hourlyForecasts}
+          />
+        </div>
       </main>
     </>
   );

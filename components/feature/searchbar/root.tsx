@@ -7,7 +7,7 @@ export default function Searchbar({ className }: { className?: string }) {
   return (
     <Form
       className={clsx(
-        "md:flex md:items-center md:justify-center md:gap-4",
+        "md:flex md:items-center md:justify-center md:gap-3.5",
         className,
       )}
       role="search"
