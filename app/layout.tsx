@@ -26,9 +26,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${bricolageGrotesque.variable} ${dmSans.variable} antialiased`}
+        className={`${bricolageGrotesque.variable} ${dmSans.variable} bg-background-body antialiased`}
       >
-        <div className="min-h-dvh bg-background-body p-3.5 font-secondary text-text-primary">
+        <div className="mx-auto min-h-dvh w-full max-w-layout p-3.5 font-secondary text-text-primary">
           {children}
         </div>
       </body>
