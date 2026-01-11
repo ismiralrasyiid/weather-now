@@ -41,6 +41,8 @@
   --min-width-select: 195px;
 
   --min-width-menu-dropdown: 195px;
+
+  --width-search-input: 475px;
 }
 
 @theme inline {
@@ -72,6 +74,8 @@
   --spacing-select: var(--min-width-select);
 
   --spacing-menu-dropdown: var(--min-width-menu-dropdown);
+
+  --spacing-search-input: var(--width-search-input);
 
   /* nextjs font */
   --font-primary: var(--font-bricolage-grotesque);
