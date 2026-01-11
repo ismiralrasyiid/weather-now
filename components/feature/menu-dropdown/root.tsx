@@ -1,47 +1,11 @@
 import { Menu } from "@base-ui/react";
 import Image from "next/image";
+import Trigger from "./trigger";
 
 export default function MenuDropdown() {
   return (
     <Menu.Root>
-      <Menu.Trigger
-        className="flex cursor-pointer items-center gap-1.5 rounded-md bg-background-primary p-2 text-xs lg:gap-2.5 lg:px-3.25 lg:text-sm"
-        openOnHover
-      >
-        <Image
-          className="lg:hidden"
-          src="/icon-units.svg"
-          alt=""
-          width={13}
-          height={13}
-          aria-hidden
-        />
-        <Image
-          className="hidden lg:block"
-          src="/icon-units.svg"
-          alt=""
-          width={15}
-          height={15}
-          aria-hidden
-        />
-        Units
-        <Image
-          className="lg:hidden"
-          src="/icon-dropdown.svg"
-          alt=""
-          width={9}
-          height={9}
-          aria-hidden
-        />
-        <Image
-          className="hidden lg:block"
-          src="/icon-dropdown.svg"
-          alt=""
-          width={13}
-          height={13}
-          aria-hidden
-        />
-      </Menu.Trigger>
+      <Trigger />
       <Menu.Portal>
         <Menu.Positioner sideOffset={10} align="end">
           <Menu.Popup className="flex min-w-menu-dropdown flex-col gap-2 rounded-xl border border-border bg-background-primary p-1.5 font-primary text-sm tracking-wide text-text-primary">
