@@ -37,6 +37,8 @@
   --height-scrollarea: 540px;
 
   --min-width-select: 195px;
+
+  --min-width-menu-dropdown: 195px;
 }
 
 @theme inline {
@@ -64,6 +66,8 @@
   --spacing-scrollarea: var(--height-scrollarea);
 
   --spacing-select: var(--min-width-select);
+
+  --spacing-menu-dropdown: var(--min-width-menu-dropdown);
 
   /* nextjs font */
   --font-primary: var(--font-bricolage-grotesque);
