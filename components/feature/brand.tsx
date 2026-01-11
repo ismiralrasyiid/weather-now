@@ -5,7 +5,7 @@ export default function Brand() {
     <div>
       <h1 className="sr-only">Weather Now</h1>
       <Image
-        className="lg:hidden"
+        className="md:hidden"
         src="/logo.svg"
         alt=""
         height={30}
@@ -13,7 +13,7 @@ export default function Brand() {
         aria-hidden
       />
       <Image
-        className="hidden lg:block"
+        className="hidden md:block"
         src="/logo.svg"
         alt=""
         height={36}
