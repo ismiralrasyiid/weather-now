@@ -44,8 +44,8 @@ export default function Home() {
         </nav>
       </header>
       <main>
-        <Headline className="mt-9.5" />
-        <Searchbar className="mt-8.5" />
+        <Headline className="mt-9.5 lg:mt-14.5" />
+        <Searchbar className="mt-8.5 lg:mt-13.5" />
         <HeroSection className="mt-7" />
         <WeatherDetails className="mt-5" metrics={mockData.metrics} />
         <DailyForecasts
