@@ -9,6 +9,20 @@ const temperatureUnits = {
     { id: "", label: "Fahrenheit (°F)", value: "fahrenheit" },
   ],
 };
+const windSpeedUnits = {
+  label: "Wind Speed",
+  options: [
+    { id: "", label: "km/h", value: "kmh" },
+    { id: "", label: "mph", value: "mph" },
+  ],
+};
+const precipitationUnits = {
+  label: "Precipitation",
+  options: [
+    { id: "", label: "Millimeters (mm)", value: "millimeters" },
+    { id: "", label: "Inches (in)", value: "inches" },
+  ],
+};
 
 export default function MenuDropdown() {
   return (
@@ -23,6 +37,14 @@ export default function MenuDropdown() {
             <RadioGroup
               label={temperatureUnits.label}
               options={temperatureUnits.options}
+            />
+            <RadioGroup
+              label={windSpeedUnits.label}
+              options={windSpeedUnits.options}
+            />
+            <RadioGroup
+              label={precipitationUnits.label}
+              options={precipitationUnits.options}
             />
           </Menu.Popup>
         </Menu.Positioner>
