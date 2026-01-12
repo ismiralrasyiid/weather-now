@@ -43,6 +43,8 @@
   --min-width-menu-dropdown: 195px;
 
   --width-search-input: 475px;
+  --width-search-popup-mobile: calc(100dvw - 36px);
+  --width-search-popup-desktop: 475px;
 }
 
 @theme inline {
@@ -76,6 +78,8 @@
   --spacing-menu-dropdown: var(--min-width-menu-dropdown);
 
   --spacing-search-input: var(--width-search-input);
+  --spacing-search-popup-mobile: var(--width-search-popup-mobile);
+  --spacing-search-popup-desktop: var(--width-search-popup-desktop);
 
   /* nextjs font */
   --font-primary: var(--font-bricolage-grotesque);
