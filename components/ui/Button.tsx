@@ -6,7 +6,7 @@ export default function Button(props: ButtonProps) {
     <BaseUIButton
       {...props}
       className={clsx(
-        "rounded-xl bg-accent-primary px-6 py-3 text-lg",
+        "cursor-pointer rounded-xl bg-accent-primary px-6 py-3 text-lg hover:bg-accent-primary-hover",
         props.className,
       )}
     />
