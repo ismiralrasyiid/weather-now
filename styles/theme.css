@@ -15,6 +15,7 @@
   /* semantic */
   --color-background-body: var(--neutral-900);
   --color-background-primary: var(--neutral-800);
+  --color-background-primary-hover: var(--neutral-700);
   --color-background-secondary: var(--neutral-700);
   --color-background-secondary-hover: var(--neutral-600);
   --color-background-tertiary: var(--neutral-600);
@@ -50,6 +51,7 @@
 @theme inline {
   --color-background-body: var(--color-background-body);
   --color-background-primary: var(--color-background-primary);
+  --color-background-primary-hover: var(--color-background-primary-hover);
   --color-background-secondary: var(--color-background-secondary);
   --color-background-secondary-hover: var(--color-background-secondary-hover);
   --color-background-tertiary: var(--color-background-tertiary);
@@ -91,6 +93,7 @@
     /* placeholder */
     --color-background-body: var(--neutral-900);
     --color-background-primary: var(--neutral-800);
+    --color-background-primary-hover: var(--neutral-700);
     --color-background-secondary: var(--neutral-700);
     --color-background-secondary-hover: var(--neutral-700);
     --color-background-tertiary: var(--neutral-600);
