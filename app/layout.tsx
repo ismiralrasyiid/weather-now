@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Bricolage_Grotesque, DM_Sans } from "next/font/google";
 import "@/styles/theme.css";
+import Brand from "@/components/feature/brand";
+import { MenuDropdown } from "@/components/feature/menu-dropdown";
 
 const bricolageGrotesque = Bricolage_Grotesque({
   variable: "--font-bricolage-grotesque",
@@ -29,6 +31,12 @@ export default function RootLayout({
         className={`${bricolageGrotesque.variable} ${dmSans.variable} bg-background-body antialiased`}
       >
         <div className="mx-auto min-h-dvh w-full max-w-layout p-3.5 font-secondary text-text-primary">
+          <header className="flex items-center justify-between">
+            <Brand />
+            <nav>
+              <MenuDropdown />
+            </nav>
+          </header>
           {children}
         </div>
       </body>
