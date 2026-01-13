@@ -1,6 +1,12 @@
 import clsx from "clsx";
 
-export default function Headline({ className }: { className?: string }) {
+export default function Headline({
+  className,
+  children,
+}: {
+  className?: string;
+  children: React.ReactNode;
+}) {
   return (
     <h2
       className={clsx(
@@ -8,7 +14,7 @@ export default function Headline({ className }: { className?: string }) {
         className,
       )}
     >
-      How&#39;s the sky looking today?
+      {children}
     </h2>
   );
 }
