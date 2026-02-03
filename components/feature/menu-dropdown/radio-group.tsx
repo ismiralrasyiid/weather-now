@@ -13,12 +13,12 @@ export default function RadioGroup<TValue>(props: RadioGroupProps<TValue>) {
       <Menu.GroupLabel className="ml-2.5 text-xs text-text-tertiary">
         {label}
       </Menu.GroupLabel>
-      <Menu.RadioGroup className="flex flex-col gap-1" value={value}>
+      <Menu.RadioGroup className="flex flex-col gap-1" value={value} disabled>
         {options.map((option, index) => (
           <Menu.RadioItem
             key={`radio-item-${id}-${index}`}
             value={option.value}
-            className="flex cursor-pointer items-center justify-between rounded-lg p-2 hover:bg-background-secondary-hover data-checked:bg-background-secondary"
+            className="flex items-center justify-between rounded-lg p-2 data-checked:bg-background-secondary"
           >
             <span>{option.label}</span>
             <Menu.RadioItemIndicator>
