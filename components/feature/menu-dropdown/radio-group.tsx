@@ -1,29 +1,22 @@
+import { RadioSelectUnitOptions } from "@/constants/unit";
 import { Menu } from "@base-ui/react";
 import Image from "next/image";
 
-type Option = {
-  id: string;
-  value: string;
-  label: string;
-};
+export type RadioGroupProps<TValue = string> =
+  RadioSelectUnitOptions<TValue> & { value: TValue };
 
-export type RadioGroupProps = {
-  label: string;
-  options: Array<Option>;
-};
-
-export default function RadioGroup(props: RadioGroupProps) {
-  const { label, options } = props;
+export default function RadioGroup<TValue>(props: RadioGroupProps<TValue>) {
+  const { label, id, options, value } = props;
 
   return (
     <Menu.Group className="flex flex-col gap-1">
       <Menu.GroupLabel className="ml-2.5 text-xs text-text-tertiary">
         {label}
       </Menu.GroupLabel>
-      <Menu.RadioGroup className="flex flex-col gap-1">
+      <Menu.RadioGroup className="flex flex-col gap-1" value={value}>
         {options.map((option, index) => (
           <Menu.RadioItem
-            key={`radio-item-${label}-${index}`}
+            key={`radio-item-${id}-${index}`}
             value={option.value}
             className="flex cursor-pointer items-center justify-between rounded-lg p-2 hover:bg-background-secondary-hover data-checked:bg-background-secondary"
           >
