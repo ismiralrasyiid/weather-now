@@ -1,28 +1,11 @@
 import { Menu } from "@base-ui/react";
 import Trigger from "./trigger";
 import RadioGroup from "./radio-group";
-
-const temperatureUnits = {
-  label: "Temperature",
-  options: [
-    { id: "", label: "Celsius (°C)", value: "celsius" },
-    { id: "", label: "Fahrenheit (°F)", value: "fahrenheit" },
-  ],
-};
-const windSpeedUnits = {
-  label: "Wind Speed",
-  options: [
-    { id: "", label: "km/h", value: "kmh" },
-    { id: "", label: "mph", value: "mph" },
-  ],
-};
-const precipitationUnits = {
-  label: "Precipitation",
-  options: [
-    { id: "", label: "Millimeters (mm)", value: "millimeters" },
-    { id: "", label: "Inches (in)", value: "inches" },
-  ],
-};
+import {
+  precipitationUnitOptions,
+  temperatureUnitOptions,
+  windSpeedUnitOptions,
+} from "@/constants/unit";
 
 export default function MenuDropdown() {
   return (
@@ -34,18 +17,9 @@ export default function MenuDropdown() {
             <Menu.Item className="cursor-pointer rounded-lg p-2 hover:bg-background-secondary-hover data-checked:bg-background-secondary">
               Switch to Imperial
             </Menu.Item>
-            <RadioGroup
-              label={temperatureUnits.label}
-              options={temperatureUnits.options}
-            />
-            <RadioGroup
-              label={windSpeedUnits.label}
-              options={windSpeedUnits.options}
-            />
-            <RadioGroup
-              label={precipitationUnits.label}
-              options={precipitationUnits.options}
-            />
+            <RadioGroup {...temperatureUnitOptions} value="celsius" />
+            <RadioGroup {...windSpeedUnitOptions} value="kmh" />
+            <RadioGroup {...precipitationUnitOptions} value="inches" />
           </Menu.Popup>
         </Menu.Positioner>
       </Menu.Portal>
