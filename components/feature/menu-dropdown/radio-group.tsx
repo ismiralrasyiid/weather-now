@@ -1,9 +1,20 @@
-import { RadioSelectUnitOptions } from "@/constants/unit";
 import { Menu } from "@base-ui/react";
 import Image from "next/image";
 
-export type RadioGroupProps<TValue = string> =
-  RadioSelectUnitOptions<TValue> & { value: TValue };
+export type SelectOption<TValue = string> = {
+  label: string;
+  value: TValue;
+};
+
+export type RadioSelectOptions<TValue = string> = {
+  label: string;
+  id: string;
+  options: ReadonlyArray<SelectOption<TValue>>;
+};
+
+export type RadioGroupProps<TValue = string> = RadioSelectOptions<TValue> & {
+  value: TValue;
+};
 
 export default function RadioGroup<TValue>(props: RadioGroupProps<TValue>) {
   const { label, id, options, value } = props;

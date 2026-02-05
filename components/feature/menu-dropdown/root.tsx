@@ -5,7 +5,7 @@ import {
   precipitationUnitOptions,
   temperatureUnitOptions,
   windSpeedUnitOptions,
-} from "@/constants/unit";
+} from "@/domains/unit";
 
 export default function MenuDropdown() {
   return (
@@ -18,8 +18,8 @@ export default function MenuDropdown() {
               Switch to Imperial
             </Menu.Item>
             <RadioGroup {...temperatureUnitOptions} value="celsius" />
-            <RadioGroup {...windSpeedUnitOptions} value="kmh" />
-            <RadioGroup {...precipitationUnitOptions} value="inches" />
+            <RadioGroup {...windSpeedUnitOptions} value="mph" />
+            <RadioGroup {...precipitationUnitOptions} value="millimeters" />
           </Menu.Popup>
         </Menu.Positioner>
       </Menu.Portal>
