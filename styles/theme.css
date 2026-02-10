@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+:root {
+  /* palette */
+  --neutral-900: hsl(243, 96%, 9%);
+  --neutral-800: hsl(243, 27%, 20%);
+  --neutral-700: hsl(243, 23%, 24%);
+  --neutral-600: hsl(243, 23%, 30%);
+  --neutral-300: hsl(240, 6%, 70%);
+  --neutral-200: hsl(250, 6%, 84%);
+  --white: hsl(0, 0%, 100%);
+  --blue-700: hsl(248, 70%, 36%);
+  --blue-500: hsl(233, 67%, 56%);
+
+  /* semantic */
+  --color-background-body: var(--neutral-900);
+  --color-background-primary: var(--neutral-800);
+  --color-background-primary-hover: var(--neutral-700);
+  --color-background-secondary: var(--neutral-700);
+  --color-background-secondary-hover: var(--neutral-600);
+  --color-background-tertiary: var(--neutral-600);
+  --color-accent-primary: var(--blue-500);
+  --color-accent-primary-hover: var(--blue-700);
+  --color-text-primary: var(--white);
+  --color-text-secondary: var(--neutral-200);
+  --color-text-tertiary: var(--neutral-300);
+  --color-text-placeholder: var(--neutral-300);
+  --color-border: var(--neutral-600);
+
+  --max-width-layout: 1125px;
+
+  --font-size-headline: 48px;
+  --line-height-headline: 60px;
+
+  --height-hero-section: 255px;
+  --font-size-hero-section-city: 26px;
+  --font-size-hero-section-degree: 90px;
+
+  --width-scrollarea-thumb: 3px;
+  --height-scrollarea: 540px;
+
+  --min-width-select: 195px;
+
+  --min-width-menu-dropdown: 195px;
+
+  --width-search-input: 475px;
+  --width-search-popup-mobile: calc(100dvw - 36px);
+  --width-search-popup-desktop: 475px;
+}
+
+@theme inline {
+  --color-background-body: var(--color-background-body);
+  --color-background-primary: var(--color-background-primary);
+  --color-background-primary-hover: var(--color-background-primary-hover);
+  --color-background-secondary: var(--color-background-secondary);
+  --color-background-secondary-hover: var(--color-background-secondary-hover);
+  --color-background-tertiary: var(--color-background-tertiary);
+  --color-accent-primary: var(--color-accent-primary);
+  --color-accent-primary-hover: var(--color-accent-primary-hover);
+  --color-text-primary: var(--color-text-primary);
+  --color-text-secondary: var(--color-text-secondary);
+  --color-text-tertiary: var(--color-text-tertiary);
+  --color-text-placeholder: var(--color-text-placeholder);
+  --color-border: var(--color-border);
+
+  --spacing-layout: var(--max-width-layout);
+
+  --text-headline: var(--font-size-headline);
+  --spacing-headline: var(--line-height-headline);
+
+  --spacing-hero-section: var(--height-hero-section);
+  --text-hero-section-city: var(--font-size-hero-section-city);
+  --text-hero-section-degree: var(--font-size-hero-section-degree);
+
+  --spacing-thumb: var(--width-scrollarea-thumb);
+  --spacing-scrollarea: var(--height-scrollarea);
+
+  --spacing-select: var(--min-width-select);
+
+  --spacing-menu-dropdown: var(--min-width-menu-dropdown);
+
+  --spacing-search-input: var(--width-search-input);
+  --spacing-search-popup-mobile: var(--width-search-popup-mobile);
+  --spacing-search-popup-desktop: var(--width-search-popup-desktop);
+
+  /* nextjs font */
+  --font-primary: var(--font-bricolage-grotesque);
+  --font-secondary: var(--font-dm-sans);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    /* placeholder */
+    --color-background-body: var(--neutral-900);
+    --color-background-primary: var(--neutral-800);
+    --color-background-primary-hover: var(--neutral-700);
+    --color-background-secondary: var(--neutral-700);
+    --color-background-secondary-hover: var(--neutral-700);
+    --color-background-tertiary: var(--neutral-600);
+    --color-accent-primary: var(--blue-500);
+    --color-accent-primary-hover: var(--blue-700);
+    --color-text-primary: var(--white);
+    --color-text-secondary: var(--neutral-200);
+    --color-text-tertiary: var(--neutral-300);
+    --color-text-placeholder: var(--neutral-300);
+    --color-border: var(--neutral-600);
+  }
+}
