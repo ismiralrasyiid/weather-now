@@ -1,4 +1,8 @@
-import { GeoLocation, openMeteoSearchApi, OpenMeteoSearchResponse } from "@/domains/location";
+import {
+  GeoLocation,
+  openMeteoSearchApi,
+  OpenMeteoSearchResponse,
+} from "@/domains/location";
 import { NextResponse } from "next/server";
 
 export async function GET(request: Request) {
@@ -29,17 +33,21 @@ export async function GET(request: Request) {
 
     const data: OpenMeteoSearchResponse = await res.json();
     const rebuildResults =
-      data.results?.map((location): GeoLocation => ({
-        id: location.id,
-        name: location.name,
-        admin1: location.admin1,
-        country: location.country,
-        latitude: location.latitude,
-        longitude: location.longitude,
-      })) ?? [];
+      data.results?.map(
+        (location): GeoLocation => ({
+          id: location.id,
+          name: location.name,
+          admin1: location.admin1,
+          admin2: location.admin2,
+          country: location.country,
+          country_code: location.country_code,
+          latitude: location.latitude,
+          longitude: location.longitude,
+        }),
+      ) ?? [];
 
     return NextResponse.json({ results: rebuildResults });
-  } catch (error) {
+  } catch {
     return NextResponse.json({
       error: "Internal server error",
       status: 500,

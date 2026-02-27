@@ -24,7 +24,9 @@ type GeoLocationKeys =
   | "id"
   | "name"
   | "admin1"
+  | "admin2"
   | "country"
+  | "country_code"
   | "latitude"
   | "longitude";
 
