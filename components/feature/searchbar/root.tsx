@@ -7,6 +7,7 @@ import clsx from "clsx";
 import Image from "next/image";
 import { useMemo, useRef, useState } from "react";
 import { Empty } from "./empty";
+import { Status } from "./status";
 
 export default function Searchbar({ className }: { className?: string }) {
   const [searchInput, setSearchInput] = useState("");
@@ -65,17 +66,7 @@ export default function Searchbar({ className }: { className?: string }) {
           <Autocomplete.Portal>
             <Autocomplete.Positioner sideOffset={9}>
               <Autocomplete.Popup className="w-search-popup-mobile rounded-lg bg-background-primary p-1.75 text-text-primary md:w-search-popup-desktop">
-                {showStatus ? (
-                  <Autocomplete.Status>
-                    <div className="flex items-center gap-2 py-1 pr-8 pl-4 text-sm text-text-tertiary">
-                      <div
-                        className="size-4 animate-spin rounded-full border-2 border-gray-200 border-t-gray-600"
-                        aria-hidden
-                      />
-                      {isTyping ? "Typing..." : "Loading..."}
-                    </div>
-                  </Autocomplete.Status>
-                ) : null}
+                <Status showStatus={showStatus} isTyping={isTyping} />
                 <Empty
                   isTyping={isTyping}
                   isPaused={isPaused}
