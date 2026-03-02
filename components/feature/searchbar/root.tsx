@@ -6,10 +6,12 @@ import { Autocomplete, Form } from "@base-ui/react";
 import clsx from "clsx";
 import Image from "next/image";
 import { useMemo, useRef, useState } from "react";
+import { Empty } from "./empty";
 
 export default function Searchbar({ className }: { className?: string }) {
   const [searchInput, setSearchInput] = useState("");
-  const { data, isFetching, isTyping } = useSearchLocation(searchInput);
+  const { data, isFetching, isTyping, isPaused } =
+    useSearchLocation(searchInput);
   const safeData = useMemo(() => (data ? [...data] : []), [data]);
   const isSelectingRef = useRef(false);
 
@@ -74,15 +76,12 @@ export default function Searchbar({ className }: { className?: string }) {
                     </div>
                   </Autocomplete.Status>
                 ) : null}
-                <Autocomplete.Empty className="p-1.75 text-sm text-text-secondary empty:p-0">
-                  {searchInput.length < 2
-                    ? "Search input should be 2 characters or more!"
-                    : !data
-                      ? null
-                      : data.length
-                        ? null
-                        : "Place not found!"}
-                </Autocomplete.Empty>
+                <Empty
+                  isTyping={isTyping}
+                  isPaused={isPaused}
+                  searchInput={searchInput}
+                  data={data}
+                />
                 <Autocomplete.List className="flex flex-col gap-1">
                   {(item) => (
                     <Autocomplete.Item
