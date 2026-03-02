@@ -1,20 +1,32 @@
 "use client";
 
 import Button from "@/components/ui/button";
+import { useSearchLocation } from "@/domains/location/hooks/use-search-location";
 import { Autocomplete, Form } from "@base-ui/react";
 import clsx from "clsx";
 import Image from "next/image";
-
-const items = [
-  { id: "p1", value: "Pesanggrahan" },
-  { id: "p2", value: "Ketetang" },
-  { id: "p3", value: "Dlemer" },
-  { id: "p4", value: "Tebul" },
-  { id: "p5", value: "Karanganyar" },
-  { id: "p6", value: "Batah" },
-];
+import { useMemo, useRef, useState } from "react";
 
 export default function Searchbar({ className }: { className?: string }) {
+  const [searchInput, setSearchInput] = useState("");
+  const { data, isFetching, isTyping } = useSearchLocation(searchInput);
+  const safeData = useMemo(() => (data ? [...data] : []), [data]);
+  const isSelectingRef = useRef(false);
+
+  const showStatus = isTyping || isFetching;
+
+  const onValueChangeHandler = (value: string) => {
+    if (isSelectingRef.current) {
+      isSelectingRef.current = false;
+      return;
+    }
+    setSearchInput(value);
+  };
+
+  const onClickHandler = () => {
+    isSelectingRef.current = true;
+  };
+
   return (
     <Form
       className={clsx(
@@ -37,7 +49,11 @@ export default function Searchbar({ className }: { className?: string }) {
           />
           <span className="sr-only">Search</span>
         </label>
-        <Autocomplete.Root items={items}>
+        <Autocomplete.Root
+          items={safeData}
+          onValueChange={onValueChangeHandler}
+          itemToStringValue={(item) => item.name.toLowerCase()}
+        >
           <Autocomplete.Input
             id="searchInput"
             className="w-full rounded-xl bg-background-primary py-3.5 pr-10 pl-13.5 placeholder:text-lg placeholder:text-text-secondary md:w-search-input"
@@ -47,17 +63,43 @@ export default function Searchbar({ className }: { className?: string }) {
           <Autocomplete.Portal>
             <Autocomplete.Positioner sideOffset={9}>
               <Autocomplete.Popup className="w-search-popup-mobile rounded-lg bg-background-primary p-1.75 text-text-primary md:w-search-popup-desktop">
+                {showStatus ? (
+                  <Autocomplete.Status>
+                    <div className="flex items-center gap-2 py-1 pr-8 pl-4 text-sm text-text-tertiary">
+                      <div
+                        className="size-4 animate-spin rounded-full border-2 border-gray-200 border-t-gray-600"
+                        aria-hidden
+                      />
+                      {isTyping ? "Typing..." : "Loading..."}
+                    </div>
+                  </Autocomplete.Status>
+                ) : null}
                 <Autocomplete.Empty className="p-1.75 text-sm text-text-secondary empty:p-0">
-                  Place not found!
+                  {searchInput.length < 2
+                    ? "Search input should be 2 characters or more!"
+                    : !data
+                      ? null
+                      : data.length
+                        ? null
+                        : "Place not found!"}
                 </Autocomplete.Empty>
                 <Autocomplete.List className="flex flex-col gap-1">
                   {(item) => (
                     <Autocomplete.Item
                       key={item.id}
                       value={item}
-                      className="cursor-pointer rounded-lg border border-background-primary p-1.75 text-sm hover:border-border hover:bg-background-primary-hover"
+                      onClick={onClickHandler}
+                      className="cursor-pointer rounded-lg border border-background-primary p-1.75 text-sm data-highlighted:border-border data-highlighted:bg-background-primary-hover"
                     >
-                      {item.value}
+                      <div className="flex flex-col">
+                        <span>{item.name}</span>
+                        <span className="text-xs text-text-tertiary">
+                          {`${item.admin2 ?? ""}, ${item.admin1 ?? ""}, ${item.country ?? ""}`.replace(
+                            /,\s,\s|^,\s+|,\s+$|/g,
+                            "",
+                          )}
+                        </span>
+                      </div>
                     </Autocomplete.Item>
                   )}
                 </Autocomplete.List>
