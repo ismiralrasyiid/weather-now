@@ -6,6 +6,7 @@ import { useDebounce } from "@/hooks/use-debounce";
 
 export function useSearchLocation(name: string) {
   const debouncedName = useDebounce(name, 300);
+  const isTyping = debouncedName !== name;
 
   const query = useQuery({
     queryKey: ["location", "search", debouncedName],
@@ -15,5 +16,5 @@ export function useSearchLocation(name: string) {
     gcTime: 10 * 60 * 1000,
   });
 
-  return query;
+  return { ...query, isTyping };
 }
