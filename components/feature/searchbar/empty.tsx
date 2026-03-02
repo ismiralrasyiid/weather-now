@@ -13,16 +13,14 @@ export function Empty(props: EmptyProps) {
 
   let message: string | null = null;
 
-  if (!isTyping && searchInput.length < 2) {
-    message = "Search input should be 2 characters or more!";
-  }
-
-  if (isPaused) {
-    message = "No network connection!";
-  }
-
-  if (data && data.length === 0) {
-    message = "Place not found!";
+  if (!isTyping) {
+    if (searchInput.length < 2) {
+      message = "Search input should be 2 characters or more!";
+    } else if (isPaused) {
+      message = "No network connection!";
+    } else if (data && data.length === 0) {
+      message = "Place not found!";
+    }
   }
 
   return (
