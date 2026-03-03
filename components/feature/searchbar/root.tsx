@@ -8,6 +8,7 @@ import Image from "next/image";
 import { useMemo, useRef, useState } from "react";
 import { Empty } from "./empty";
 import { Status } from "./status";
+import { Item } from "./item";
 
 export default function Searchbar({ className }: { className?: string }) {
   const [searchInput, setSearchInput] = useState("");
@@ -75,22 +76,11 @@ export default function Searchbar({ className }: { className?: string }) {
                 />
                 <Autocomplete.List className="flex flex-col gap-1">
                   {(item) => (
-                    <Autocomplete.Item
+                    <Item
                       key={item.id}
-                      value={item}
-                      onClick={onClickHandler}
-                      className="cursor-pointer rounded-lg border border-background-primary p-1.75 text-sm data-highlighted:border-border data-highlighted:bg-background-primary-hover"
-                    >
-                      <div className="flex flex-col">
-                        <span>{item.name}</span>
-                        <span className="text-xs text-text-tertiary">
-                          {`${item.admin2 ?? ""}, ${item.admin1 ?? ""}, ${item.country ?? ""}`.replace(
-                            /,\s,\s|^,\s+|,\s+$|/g,
-                            "",
-                          )}
-                        </span>
-                      </div>
-                    </Autocomplete.Item>
+                      location={item}
+                      onClickHandler={onClickHandler}
+                    />
                   )}
                 </Autocomplete.List>
               </Autocomplete.Popup>
