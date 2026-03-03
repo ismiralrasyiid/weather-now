@@ -57,6 +57,7 @@ export default function Searchbar({ className }: { className?: string }) {
           items={safeData}
           onValueChange={onValueChangeHandler}
           itemToStringValue={(item) => item.name.toLowerCase()}
+          filter={null}
         >
           <Autocomplete.Input
             id="searchInput"
