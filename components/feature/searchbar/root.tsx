@@ -66,23 +66,27 @@ export default function Searchbar({ className }: { className?: string }) {
           <Autocomplete.Clear className="absolute top-1/2 right-0 -translate-y-1/2 cursor-pointer p-4 text-lg" />
           <Autocomplete.Portal>
             <Autocomplete.Positioner sideOffset={9}>
-              <Autocomplete.Popup className="w-search-popup-mobile rounded-lg bg-background-primary p-1.75 text-text-primary md:w-search-popup-desktop">
-                <Status showStatus={showStatus} isTyping={isTyping} />
-                <Empty
-                  isTyping={isTyping}
-                  isPaused={isPaused}
-                  searchInput={searchInput}
-                  data={data}
-                />
-                <Autocomplete.List className="flex flex-col gap-1">
-                  {(item) => (
-                    <Item
-                      key={item.id}
-                      location={item}
-                      onClickHandler={onClickHandler}
+              <Autocomplete.Popup className="w-search-popup-mobile rounded-lg border border-border bg-background-primary p-1.75 text-text-primary md:w-search-popup-desktop">
+                {showStatus ? (
+                  <Status isTyping={isTyping} />
+                ) : (
+                  <>
+                    <Empty
+                      isPaused={isPaused}
+                      searchInput={searchInput}
+                      data={data}
                     />
-                  )}
-                </Autocomplete.List>
+                    <Autocomplete.List className="flex flex-col gap-1">
+                      {(item) => (
+                        <Item
+                          key={item.id}
+                          location={item}
+                          onClickHandler={onClickHandler}
+                        />
+                      )}
+                    </Autocomplete.List>
+                  </>
+                )}
               </Autocomplete.Popup>
             </Autocomplete.Positioner>
           </Autocomplete.Portal>

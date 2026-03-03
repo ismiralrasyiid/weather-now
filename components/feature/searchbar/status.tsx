@@ -1,13 +1,7 @@
 import { Autocomplete } from "@base-ui/react";
 
-export function Status({
-  showStatus,
-  isTyping,
-}: {
-  showStatus: boolean;
-  isTyping: boolean;
-}) {
-  return showStatus ? (
+export function Status({ isTyping }: { isTyping: boolean }) {
+  return (
     <Autocomplete.Status>
       <div className="flex items-center gap-2 py-1 pr-8 pl-4 text-sm text-text-tertiary">
         <div
@@ -17,5 +11,5 @@ export function Status({
         {isTyping ? "Typing..." : "Loading..."}
       </div>
     </Autocomplete.Status>
-  ) : null;
+  );
 }
