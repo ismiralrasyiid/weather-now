@@ -40,7 +40,7 @@ export async function GET(request: Request) {
           admin1: location.admin1,
           admin2: location.admin2,
           country: location.country,
-          country_code: location.country_code,
+          timezone: location.timezone,
           latitude: location.latitude,
           longitude: location.longitude,
         }),

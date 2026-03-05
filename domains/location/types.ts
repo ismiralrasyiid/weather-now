@@ -26,7 +26,7 @@ type GeoLocationKeys =
   | "admin1"
   | "admin2"
   | "country"
-  | "country_code"
+  | "timezone"
   | "latitude"
   | "longitude";
 
