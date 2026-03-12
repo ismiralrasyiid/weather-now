@@ -2,21 +2,13 @@ import ScrollArea from "@/components/ui/scroll-area";
 import Forecast, { HourlyForecast } from "./forecast";
 import Select from "@/components/ui/select";
 import clsx from "clsx";
+import { dayOptions } from "@/domains/time";
 
 export type HourlyForecastsProps = {
   forecasts: Array<HourlyForecast>;
   className?: string;
 };
 
-const dayOptions = [
-  { label: "Monday", value: "monday" },
-  { label: "Tuesday", value: "tuesday" },
-  { label: "Wednesday", value: "wednesday" },
-  { label: "Thursday", value: "thursday" },
-  { label: "Friday", value: "friday" },
-  { label: "Saturday", value: "saturday" },
-  { label: "Sunday", value: "sunday" },
-];
 const defaultDay = "tuesday";
 
 export default function HourlyForecasts(props: HourlyForecastsProps) {
