@@ -1,10 +1,9 @@
 import Image from "next/image";
 
 export type HourlyForecast = {
-  id: string;
   hour: string;
-  url: string;
-  indicator: string;
+  image: string;
+  description: string;
   temperature: number;
 };
 
@@ -19,8 +18,8 @@ export default function Forecast(props: ForecastProps) {
     <div className="flex items-center justify-between rounded-lg border border-border bg-background-secondary p-2">
       <div className="flex items-center gap-2">
         <Image
-          src={forecast.url}
-          alt={forecast.indicator}
+          src={forecast.image}
+          alt={forecast.description}
           width={36}
           height={36}
         />
