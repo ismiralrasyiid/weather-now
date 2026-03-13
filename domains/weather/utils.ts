@@ -8,12 +8,13 @@ import {
   WeatherParams,
 } from "./types";
 import { HourlyForecast } from "@/components/feature/hourly-forecasts/forecast";
+import { MetricData } from "@/components/feature/weather-details/metric";
 
 export function mapWeatherCode(code: number) {
   return weatherMap[code] ?? { description: "Unknown", image: "" };
 }
 
-export function getWeatherMetrics(data: CurrentWeather) {
+export function getWeatherMetrics(data: CurrentWeather): MetricData[] {
   const { current, current_units } = data;
 
   const weatherMetrics = [
