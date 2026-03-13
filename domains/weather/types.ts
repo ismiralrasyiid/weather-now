@@ -76,3 +76,9 @@ export type WeatherInfo = {
 };
 
 export type WeatherMap = Record<number, WeatherInfo>;
+
+export type WeatherParams = {
+  lat?: string;
+  lon?: string;
+  tzone?: string;
+};

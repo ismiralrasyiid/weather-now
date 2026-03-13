@@ -1,7 +1,12 @@
 import { DailyForecast } from "@/components/feature/daily-forecasts/forecast";
 import { Day, dayAbbreviations, days, formatHour12FromDate } from "../time";
 import { weatherMap } from "./constants";
-import { CurrentWeather, DailyWeather, HourlyWeather } from "./types";
+import {
+  CurrentWeather,
+  DailyWeather,
+  HourlyWeather,
+  WeatherParams,
+} from "./types";
 import { HourlyForecast } from "@/components/feature/hourly-forecasts/forecast";
 
 export function mapWeatherCode(code: number) {
@@ -101,4 +106,24 @@ export function getHourlyForecasts(
   // return an object with a day as a key
   // and its corresponding weather forecast as value
   return Object.fromEntries(hourlyForecastEntries);
+}
+
+export function validateWeatherParams({
+  lat,
+  lon,
+  tzone,
+}: WeatherParams): boolean {
+  const numberRegex = /^-?\d+(\.\d+)?$/;
+
+  if (!lat || !lon || !tzone) return false;
+
+  if (!numberRegex.test(lat) || !numberRegex.test(lon)) return false;
+
+  const latitude = Number(lat);
+  const longitude = Number(lon);
+
+  if (latitude < -90 || latitude > 90) return false;
+  if (longitude < -180 || longitude > 180) return false;
+
+  return true;
 }
