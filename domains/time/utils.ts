@@ -17,3 +17,21 @@ const dateFormatter = new Intl.DateTimeFormat("en-US", {
 export function formatDate(dateString: string) {
   return dateFormatter.format(new Date(dateString));
 }
+
+function isValidTimeZone(timeZone: string) {
+  try {
+    new Intl.DateTimeFormat("en-US", { timeZone });
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+export function getDayIndexByTZ(timeZone: string | null): number {
+  if (!timeZone || !isValidTimeZone(timeZone)) {
+    return new Date().getDay();
+  }
+
+  const tzDate = new Date().toLocaleString("en-US", { timeZone });
+  return new Date(tzDate).getDay();
+}
