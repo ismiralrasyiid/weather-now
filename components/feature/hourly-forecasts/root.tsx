@@ -4,8 +4,9 @@ import ScrollArea from "@/components/ui/scroll-area";
 import Forecast, { HourlyForecast } from "./forecast";
 import Select from "@/components/ui/select";
 import clsx from "clsx";
-import { Day, dayOptions, days } from "@/domains/time";
+import { Day, dayOptions, days, getDayIndexByTZ } from "@/domains/time";
 import { useState } from "react";
+import { useSearchParams } from "next/navigation";
 
 export type HourlyForecastsProps = {
   forecasts: Record<Day, HourlyForecast[]>;
@@ -14,7 +15,8 @@ export type HourlyForecastsProps = {
 
 export default function HourlyForecasts(props: HourlyForecastsProps) {
   const { className, forecasts } = props;
-  const today = days[new Date().getDay()];
+  const searchParams = useSearchParams();
+  const today = days[getDayIndexByTZ(searchParams.get("tzone"))];
   const [selectDay, setSelectDay] = useState<Day | null>(today);
 
   return (
