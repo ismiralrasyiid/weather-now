@@ -4,11 +4,11 @@ import { Select as BaseUISelect } from "@base-ui/react";
 import Image from "next/image";
 import clsx from "clsx";
 
-export type SelectProps = {
+export type SelectProps<T = string> = {
   className?: string;
   items: Array<{ label: string; value: string }>;
-  value: string | null;
-  onChange: (value: string | null) => void;
+  value: T | null;
+  onChange: (value: T | null) => void;
 };
 
 const {
@@ -24,7 +24,7 @@ const {
   ItemText,
 } = BaseUISelect;
 
-export default function Select(props: SelectProps) {
+export default function Select<T>(props: SelectProps<T>) {
   const { className, items, value, onChange } = props;
 
   return (
