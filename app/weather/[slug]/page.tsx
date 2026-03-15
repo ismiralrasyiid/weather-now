@@ -20,17 +20,23 @@ import {
 } from "@/domains/weather";
 import { formatDate } from "@/domains/time";
 import { notFound } from "next/navigation";
+import { parseUnitType, unitsByType, UnitType } from "@/domains/unit";
 
 export default async function Weather({
   params,
   searchParams,
 }: {
   params: Promise<{ slug: string }>;
-  searchParams: Promise<{ lat: string; lon: string; tzone: string }>;
+  searchParams: Promise<{
+    lat: string;
+    lon: string;
+    tzone: string;
+    unitType?: string;
+  }>;
 }) {
   const { slug } = await params;
   const [locationName, country] = decodeURIComponent(slug).split("-");
-  const { lat, lon, tzone } = await searchParams;
+  const { lat, lon, tzone, unitType = null } = await searchParams;
 
   if (!validateWeatherParams({ lat, lon, tzone })) {
     notFound();
@@ -44,6 +50,14 @@ export default async function Weather({
     hourly: openMeteoHourlyWeatherVariables,
     daily: openMeteoDailyWeatherVariables,
   });
+
+  // Set non default open meteo units
+  if (parseUnitType(unitType) === UnitType.Imperial) {
+    const units = unitsByType[UnitType.Imperial];
+    openMeteoSearchParams.set("temperature_unit", units.temperature);
+    openMeteoSearchParams.set("wind_speed_unit", units.windSpeed);
+    openMeteoSearchParams.set("precipitation_unit", units.precipitation);
+  }
 
   const data: OpenMeteoWeatherResponse = await fetchWeather(
     openMeteoSearchParams.toString(),
