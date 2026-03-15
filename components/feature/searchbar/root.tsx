@@ -70,7 +70,6 @@ export default function Searchbar({ className }: { className?: string }) {
             className="w-full rounded-xl bg-background-primary py-3.5 pr-10 pl-13.5 placeholder:text-lg placeholder:text-text-secondary md:w-search-input"
             placeholder="Search for a place..."
           />
-          <Autocomplete.Clear className="absolute top-1/2 right-0 -translate-y-1/2 cursor-pointer p-4 text-lg" />
           <Autocomplete.Portal>
             <Autocomplete.Positioner sideOffset={9}>
               <Autocomplete.Popup className="w-search-popup-mobile rounded-lg border border-border bg-background-primary p-1.75 text-text-primary md:w-search-popup-desktop">
@@ -99,7 +98,12 @@ export default function Searchbar({ className }: { className?: string }) {
           </Autocomplete.Portal>
         </Autocomplete.Root>
       </div>
-      <Button className="mt-3 w-full md:mt-0 md:w-auto">Search</Button>
+      <Button
+        className="mt-3 w-full py-4 text-sm md:mt-0 md:w-auto"
+        onClick={() => setSearchInput("")}
+      >
+        Clear Input
+      </Button>
     </Form>
   );
 }
