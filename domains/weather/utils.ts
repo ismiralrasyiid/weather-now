@@ -9,6 +9,7 @@ import {
 } from "./types";
 import { HourlyForecast } from "@/components/feature/hourly-forecasts/forecast";
 import { MetricData } from "@/components/feature/weather-details/metric";
+import { GeoLocation } from "../location";
 
 export function mapWeatherCode(code: number) {
   return weatherMap[code] ?? { description: "Unknown", image: "" };
@@ -127,4 +128,8 @@ export function validateWeatherParams({
   if (longitude < -180 || longitude > 180) return false;
 
   return true;
+}
+
+export function getWeatherPageUrl(location: GeoLocation) {
+  return `/weather/${location.name.toLowerCase()}-${location.country.toLowerCase()}-${location.id}?lat=${encodeURIComponent(location.latitude)}&lon=${encodeURIComponent(location.longitude)}&tzone=${encodeURIComponent(location.timezone)}`;
 }
