@@ -9,6 +9,8 @@ import { useMemo, useRef, useState } from "react";
 import { Empty } from "./empty";
 import { Status } from "./status";
 import { Item } from "./item";
+import { useRouter } from "next/navigation";
+import { getWeatherPageUrl } from "@/domains/weather";
 
 export default function Searchbar({ className }: { className?: string }) {
   const [searchInput, setSearchInput] = useState("");
@@ -17,11 +19,14 @@ export default function Searchbar({ className }: { className?: string }) {
   const safeData = useMemo(() => (data ? [...data] : []), [data]);
   const isSelectingRef = useRef(false);
 
+  const router = useRouter();
+
   const showStatus = isTyping || isFetching;
 
   const onValueChangeHandler = (value: string) => {
     if (isSelectingRef.current) {
       isSelectingRef.current = false;
+      router.push(value);
       return;
     }
     setSearchInput(value);
@@ -56,7 +61,8 @@ export default function Searchbar({ className }: { className?: string }) {
         <Autocomplete.Root
           items={safeData}
           onValueChange={onValueChangeHandler}
-          itemToStringValue={(item) => item.name.toLowerCase()}
+          itemToStringValue={(item) => getWeatherPageUrl(item)}
+          value={searchInput}
           filter={null}
         >
           <Autocomplete.Input
