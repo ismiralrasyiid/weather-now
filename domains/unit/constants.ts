@@ -35,7 +35,7 @@ export const precipitationUnitOptions: RadioSelectOptions<PrecipitationUnit> = {
   ],
 };
 
-export const unitOptionValuesByType = {
+export const unitsByType = {
   metric: {
     temperature: "celsius",
     windSpeed: "kmh",
