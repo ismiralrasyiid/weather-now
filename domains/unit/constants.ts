@@ -31,7 +31,7 @@ export const precipitationUnitOptions: RadioSelectOptions<PrecipitationUnit> = {
   id: "precipitation",
   options: [
     { label: "Millimeters (mm)", value: "millimeters" },
-    { label: "Inches (in)", value: "inches" },
+    { label: "Inches (in)", value: "inch" },
   ],
 };
 
@@ -44,6 +44,6 @@ export const unitOptionValuesByType = {
   imperial: {
     temperature: "fahrenheit",
     windSpeed: "mph",
-    precipitation: "inches",
+    precipitation: "inch",
   },
 } as const;
