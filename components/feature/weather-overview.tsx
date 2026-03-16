@@ -1,6 +1,7 @@
 import { WeatherInfo } from "@/domains/weather";
 import clsx from "clsx";
 import Image from "next/image";
+import Infotip from "../ui/infotip";
 
 export type WeatherOverviewData = {
   location: string;
@@ -34,12 +35,14 @@ export default function WeatherOverview({
         <p className="text-text-secondary">{date}</p>
       </div>
       <div className="flex items-center">
-        <Image
-          src={weather.image}
-          alt={weather.description}
-          width={110}
-          height={110}
-        />
+        <Infotip description={weather.description} forOverview>
+          <Image
+            src={weather.image}
+            alt={weather.description}
+            width={110}
+            height={110}
+          />
+        </Infotip>
         <p className="text-hero-section-degree font-semibold">
           <span className="inline-block -skew-x-8">{temperature}</span>
           &deg;
