@@ -21,11 +21,11 @@ export function SearchbarSkeleton({ className }: { className?: string }) {
             aria-hidden
           />
         </p>
-        <p className="w-full rounded-xl bg-background-primary py-3.5 pr-10 pl-13.5 text-lg text-text-secondary md:w-search-input">
+        <p className="w-full rounded-xl bg-background-primary py-3 pr-10 pl-13.5 text-lg text-text-secondary md:w-search-input">
           Search for a place...
         </p>
       </div>
-      <Skeleton className="mt-3 w-full rounded-xl px-6 py-4 text-sm md:mt-0 md:w-auto">
+      <Skeleton className="mt-3 w-full rounded-xl px-5.75 py-3.5 text-sm md:mt-0 md:w-auto">
         Clear Input
       </Skeleton>
     </div>
