@@ -34,6 +34,7 @@ export default function Select<T>(props: SelectProps<T>) {
           "flex cursor-pointer items-center gap-3.5 rounded-lg bg-background-tertiary px-4 py-2 text-sm",
           className,
         )}
+        aria-label={`${value}`}
       >
         <Value />
         <Icon>
