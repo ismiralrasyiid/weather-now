@@ -5,7 +5,9 @@ import Image from "next/image";
 export function HourlyForecastsSkeleton({ className }: { className?: string }) {
   return (
     <div className="relative">
-      <Skeleton className={clsx("rounded-xl px-3.5 py-4", className)}>
+      <Skeleton
+        className={clsx("rounded-xl border-none px-3.5 py-4", className)}
+      >
         <div className="mb-3.5 flex justify-between">
           <p className="text-lg font-medium">Hourly Forecast</p>
           <Skeleton className="flex h-9 w-26.5 items-center justify-between bg-background-tertiary px-4">
