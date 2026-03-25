@@ -4,6 +4,7 @@ import "@/styles/theme.css";
 import Brand from "@/components/feature/brand";
 import { MenuDropdown } from "@/components/feature/menu-dropdown";
 import { Providers } from "./providers";
+import { Suspense } from "react";
 
 const bricolageGrotesque = Bricolage_Grotesque({
   variable: "--font-bricolage-grotesque",
@@ -35,7 +36,9 @@ export default function RootLayout({
           <header className="flex items-center justify-between">
             <Brand />
             <nav>
-              <MenuDropdown />
+              <Suspense fallback={null}>
+                <MenuDropdown />
+              </Suspense>
             </nav>
           </header>
           <Providers>{children}</Providers>
