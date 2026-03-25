@@ -1,5 +1,4 @@
 export type MetricData = {
-  id: string;
   name: string;
   value: number;
   unit: string;

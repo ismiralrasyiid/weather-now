@@ -1,14 +1,14 @@
 "use client";
 
-import { useState } from "react";
 import { Select as BaseUISelect } from "@base-ui/react";
 import Image from "next/image";
 import clsx from "clsx";
 
-export type SelectProps = {
+export type SelectProps<T = string> = {
   className?: string;
   items: Array<{ label: string; value: string }>;
-  defaultValue: string;
+  value: T | null;
+  onChange: (value: T | null) => void;
 };
 
 const {
@@ -24,21 +24,17 @@ const {
   ItemText,
 } = BaseUISelect;
 
-export default function Select(props: SelectProps) {
-  const { className, items, defaultValue } = props;
-  const [value, setValue] = useState<string | null>(defaultValue);
+export default function Select<T>(props: SelectProps<T>) {
+  const { className, items, value, onChange } = props;
 
   return (
-    <Root
-      items={items}
-      value={value}
-      onValueChange={(value) => setValue(value)}
-    >
+    <Root items={items} value={value} onValueChange={onChange}>
       <Trigger
         className={clsx(
           "flex cursor-pointer items-center gap-3.5 rounded-lg bg-background-tertiary px-4 py-2 text-sm",
           className,
         )}
+        aria-label={`${value}`}
       >
         <Value />
         <Icon>

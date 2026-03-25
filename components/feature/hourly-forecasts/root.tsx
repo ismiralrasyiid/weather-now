@@ -1,26 +1,24 @@
+"use client";
+
 import ScrollArea from "@/components/ui/scroll-area";
 import Forecast, { HourlyForecast } from "./forecast";
 import Select from "@/components/ui/select";
 import clsx from "clsx";
+import { Day, dayOptions, days, getDayIndexByTZ } from "@/domains/time";
+import { useState } from "react";
+import { useSearchParams } from "next/navigation";
 
 export type HourlyForecastsProps = {
-  forecasts: Array<HourlyForecast>;
+  forecasts: Record<Day, HourlyForecast[]>;
   className?: string;
 };
 
-const dayOptions = [
-  { label: "Monday", value: "monday" },
-  { label: "Tuesday", value: "tuesday" },
-  { label: "Wednesday", value: "wednesday" },
-  { label: "Thursday", value: "thursday" },
-  { label: "Friday", value: "friday" },
-  { label: "Saturday", value: "saturday" },
-  { label: "Sunday", value: "sunday" },
-];
-const defaultDay = "tuesday";
-
 export default function HourlyForecasts(props: HourlyForecastsProps) {
   const { className, forecasts } = props;
+  const searchParams = useSearchParams();
+  const today = days[getDayIndexByTZ(searchParams.get("tzone"))];
+  const [selectDay, setSelectDay] = useState<Day | null>(today);
+
   return (
     <div
       className={clsx(
@@ -30,17 +28,18 @@ export default function HourlyForecasts(props: HourlyForecastsProps) {
     >
       <div className="mb-3.5 flex justify-between">
         <h3 className="text-lg font-medium">Hourly Forecast</h3>
-        <Select items={dayOptions} defaultValue={defaultDay} />
+        <Select<Day>
+          items={dayOptions}
+          value={selectDay}
+          onChange={(value) => setSelectDay(value)}
+        />
       </div>
       <ScrollArea
         className="flex h-scrollarea flex-col gap-3.75"
         thumbOffset={-14}
       >
-        {forecasts.map((forecast, index) => (
-          <Forecast
-            key={`hourly-forecast-${index}`}
-            forecast={{ ...forecast, id: `hourly-forecast-${index}` }}
-          />
+        {forecasts[selectDay ?? today].map((forecast, index) => (
+          <Forecast key={`hourly-forecast-${index}`} forecast={forecast} />
         ))}
       </ScrollArea>
     </div>

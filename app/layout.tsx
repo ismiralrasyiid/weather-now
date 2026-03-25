@@ -3,6 +3,7 @@ import { Bricolage_Grotesque, DM_Sans } from "next/font/google";
 import "@/styles/theme.css";
 import Brand from "@/components/feature/brand";
 import { MenuDropdown } from "@/components/feature/menu-dropdown";
+import { Providers } from "./providers";
 
 const bricolageGrotesque = Bricolage_Grotesque({
   variable: "--font-bricolage-grotesque",
@@ -37,7 +38,7 @@ export default function RootLayout({
               <MenuDropdown />
             </nav>
           </header>
-          {children}
+          <Providers>{children}</Providers>
         </div>
       </body>
     </html>

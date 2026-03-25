@@ -1,12 +1,12 @@
+import Infotip from "@/components/ui/infotip";
 import Image from "next/image";
 
 export type DailyForecast = {
-  id: string;
   day: string;
-  url: string;
+  image: string;
   highestTemp: number;
   lowestTemp: number;
-  indicator: string;
+  description: string;
 };
 
 export type ForecastProps = {
@@ -17,14 +17,16 @@ export default function Forecast(props: ForecastProps) {
   const { forecast } = props;
 
   return (
-    <div className="flex grow flex-col items-center gap-2.5 rounded-xl border border-border bg-background-primary p-3">
-      <p>{forecast.day}</p>
-      <Image
-        src={forecast.url}
-        alt={forecast.indicator}
-        width={60}
-        height={60}
-      />
+    <div className="flex grow flex-col items-center gap-2.5 rounded-xl border border-border bg-background-primary px-2 py-3">
+      <p className="capitalize">{forecast.day}</p>
+      <Infotip description={forecast.description}>
+        <Image
+          src={forecast.image}
+          alt={forecast.description}
+          width={60}
+          height={60}
+        />
+      </Infotip>
       <div className="flex w-full justify-between text-sm">
         <p>
           <span className="sr-only">Highest temperature:</span>

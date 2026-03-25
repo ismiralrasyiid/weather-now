@@ -6,7 +6,7 @@ import RadioGroup from "./radio-group";
 import {
   precipitationUnitOptions,
   temperatureUnitOptions,
-  unitOptionValuesByType,
+  unitsByType,
   windSpeedUnitOptions,
 } from "@/domains/unit";
 import Link from "next/link";
@@ -15,7 +15,7 @@ import { useUnitTypeParam } from "@/hooks";
 export default function MenuDropdown() {
   const { currentUnitType, toSwitchUnitType, switchUnitTypeHref } =
     useUnitTypeParam();
-  const unitTypeOptions = unitOptionValuesByType[currentUnitType];
+  const unitTypeOptions = unitsByType[currentUnitType];
 
   return (
     <Menu.Root>
