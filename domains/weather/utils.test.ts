@@ -1,4 +1,26 @@
-import { validateWeatherParams } from "./utils";
+import { Day, days } from "../time";
+import { validateWeatherParams, getHourlyForecasts } from "./utils";
+
+function generateMockWeatherData(
+  options: {
+    withInvalidWeatherCode?: boolean;
+  } = {},
+) {
+  const { withInvalidWeatherCode } = options;
+  return {
+    time: Array.from({ length: 7 }, (_, dayIndex) =>
+      Array.from(
+        { length: 24 },
+        (_, hourIndex) =>
+          `2026-01-0${dayIndex + 1}T${hourIndex < 10 ? `0${hourIndex}` : hourIndex}:00:00Z`,
+      ),
+    ).flat(),
+    temperature_2m: Array.from({ length: 7 * 24 }, () => 30.6),
+    weather_code: Array.from({ length: 7 * 24 }, () =>
+      withInvalidWeatherCode ? -1 : 1,
+    ),
+  };
+}
 
 describe("weather utils", () => {
   describe("validateWeatherParams", () => {
@@ -93,6 +115,62 @@ describe("weather utils", () => {
         expect(validateWeatherParams({ ...VALID_PARAMS, lon: "180" })).toBe(
           true,
         );
+      });
+    });
+  });
+
+  describe("getHourlyForecasts", () => {
+    const currentDay: Day = "thursday";
+
+    describe("valid input", () => {
+      let result: ReturnType<typeof getHourlyForecasts>;
+
+      beforeEach(() => {
+        result = getHourlyForecasts(generateMockWeatherData());
+      });
+
+      it("should have valid object keys", () => {
+        expect(Object.keys(result)).toHaveLength(days.length);
+        expect(Object.keys(result)).toEqual(expect.arrayContaining(days));
+      });
+
+      it("should have rounded temperature", () => {
+        expect(result[currentDay][0].temperature).toBe(31);
+      });
+
+      it("should have correct object shape", () => {
+        expect(result[currentDay][0]).toEqual(
+          expect.objectContaining({
+            hour: expect.any(String),
+            image: expect.any(String),
+            description: expect.any(String),
+            temperature: expect.any(Number),
+          }),
+        );
+      });
+
+      it("should have image as valid url", () => {
+        expect(result[currentDay][0].image).toMatch(
+          /^\/[\w-]+\.(webp|png|jpg|jpeg|svg)$/,
+        );
+      });
+    });
+
+    describe("invalid input", () => {
+      let result: ReturnType<typeof getHourlyForecasts>;
+
+      beforeEach(() => {
+        result = getHourlyForecasts(
+          generateMockWeatherData({ withInvalidWeatherCode: true }),
+        );
+      });
+
+      it("should have Unknown value for description", () => {
+        expect(result[currentDay][0].description).toBe("Unknown");
+      });
+
+      it("should have empty string for image url", () => {
+        expect(result[currentDay][0].image).toBe("");
       });
     });
   });
