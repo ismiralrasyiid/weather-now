@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "eslint",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "format:check": "prettier --check .",
+    "type:check": "tsc --noEmit"
   },
   "dependencies": {
     "@base-ui/react": "^1.0.0",
