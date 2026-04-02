@@ -31,3 +31,11 @@ type GeoLocationKeys =
   | "longitude";
 
 export type GeoLocation = Pick<OpenMeteoLocation, GeoLocationKeys>;
+
+export type City = {
+  id: GeoLocation["id"];
+  name: GeoLocation["name"];
+  country: GeoLocation["country"];
+  location: Pick<GeoLocation, "latitude" | "longitude" | "timezone">;
+  image: string;
+};
