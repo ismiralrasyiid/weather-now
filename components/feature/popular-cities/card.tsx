@@ -6,7 +6,13 @@ import { City, mapCityToGeoLocation } from "@/domains/location";
 import { getWeatherPageUrl } from "@/domains/weather";
 import Link from "next/link";
 
-export default function Card({ city }: { city: City }) {
+export default function Card({
+  city,
+  unitType,
+}: {
+  city: City;
+  unitType?: string;
+}) {
   return (
     <Link href={getWeatherPageUrl(mapCityToGeoLocation(city))}>
       <div className="group relative cursor-pointer overflow-hidden rounded-2xl">
@@ -24,7 +30,7 @@ export default function Card({ city }: { city: City }) {
         <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/30 to-transparent" />
 
         <Suspense fallback={<Fallback name={city.name} />}>
-          <Content city={city} />
+          <Content city={city} unitType={unitType} />
         </Suspense>
       </div>
     </Link>
