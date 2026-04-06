@@ -34,6 +34,7 @@ export default function RadioGroup<TValue>(props: RadioGroupProps<TValue>) {
             <span>{option.label}</span>
             <Menu.RadioItemIndicator>
               <Image
+                className="size-3.25"
                 src="/icon-checkmark.svg"
                 width={13}
                 height={13}
