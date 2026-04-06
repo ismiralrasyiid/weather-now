@@ -19,8 +19,8 @@ export default function Card({
         <Image
           src={city.image}
           alt={city.name}
-          className="h-56 w-89 object-cover transition duration-300 group-hover:scale-105"
-          width={356}
+          className="h-56 w-89.5 object-cover transition duration-300 group-hover:scale-105"
+          width={358}
           height={224}
           priority
           fetchPriority="high"
