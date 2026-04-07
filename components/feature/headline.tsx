@@ -8,13 +8,13 @@ export default function Headline({
   children: React.ReactNode;
 }) {
   return (
-    <h2
+    <p
       className={clsx(
         "text-center font-primary text-headline leading-headline font-semibold",
         className,
       )}
     >
       {children}
-    </h2>
+    </p>
   );
 }

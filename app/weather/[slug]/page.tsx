@@ -7,60 +7,36 @@ import { HourlyForecasts } from "@/components/feature/hourly-forecasts";
 import { WeatherDetails } from "@/components/feature/weather-details";
 import { Searchbar } from "@/components/feature/searchbar";
 import {
+  buildWeatherSearchParams,
   fetchWeather,
   getDailyForecasts,
   getHourlyForecasts,
   getWeatherMetrics,
   mapWeatherCode,
-  openMeteoCurrentWeatherVariables,
-  openMeteoDailyWeatherVariables,
-  openMeteoHourlyWeatherVariables,
   OpenMeteoWeatherResponse,
   validateWeatherParams,
+  WeatherParams,
 } from "@/domains/weather";
 import { formatDate } from "@/domains/time";
 import { notFound } from "next/navigation";
-import { parseUnitType, unitsByType, UnitType } from "@/domains/unit";
 
 export default async function Weather({
   params,
   searchParams,
 }: {
   params: Promise<{ slug: string }>;
-  searchParams: Promise<{
-    lat: string;
-    lon: string;
-    tzone: string;
-    unitType?: string;
-  }>;
+  searchParams: Promise<WeatherParams>;
 }) {
   const { slug } = await params;
   const [locationName, country] = decodeURIComponent(slug).split("-");
-  const { lat, lon, tzone, unitType = null } = await searchParams;
+  const { lat, lon, tzone, unitType } = await searchParams;
 
   if (!validateWeatherParams({ lat, lon, tzone })) {
     notFound();
   }
 
-  const openMeteoSearchParams = new URLSearchParams({
-    latitude: lat,
-    longitude: lon,
-    timezone: tzone,
-    current: openMeteoCurrentWeatherVariables,
-    hourly: openMeteoHourlyWeatherVariables,
-    daily: openMeteoDailyWeatherVariables,
-  });
-
-  // Set non default open meteo units
-  if (parseUnitType(unitType) === UnitType.Imperial) {
-    const units = unitsByType[UnitType.Imperial];
-    openMeteoSearchParams.set("temperature_unit", units.temperature);
-    openMeteoSearchParams.set("wind_speed_unit", units.windSpeed);
-    openMeteoSearchParams.set("precipitation_unit", units.precipitation);
-  }
-
   const data: OpenMeteoWeatherResponse = await fetchWeather(
-    openMeteoSearchParams.toString(),
+    buildWeatherSearchParams({ lat, lon, tzone, unitType }).toString(),
   );
 
   const weatherOverview: WeatherOverviewData = {

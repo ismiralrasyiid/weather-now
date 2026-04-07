@@ -67,7 +67,7 @@ export default function Searchbar({ className }: { className?: string }) {
         >
           <Autocomplete.Input
             id="searchInput"
-            className="w-full rounded-xl bg-background-primary py-3.5 pr-10 pl-13.5 placeholder:text-lg placeholder:text-text-secondary md:w-search-input"
+            className="w-full rounded-xl bg-background-primary py-3.5 pr-10 pl-13.5 transition-all placeholder:text-lg placeholder:text-text-secondary focus:ring-1 focus:ring-text-secondary focus:outline-none md:w-search-input"
             placeholder="Search for a place..."
           />
           <Autocomplete.Portal>
@@ -99,7 +99,7 @@ export default function Searchbar({ className }: { className?: string }) {
         </Autocomplete.Root>
       </div>
       <Button
-        className="mt-3 w-full py-4 text-sm md:mt-0 md:w-auto"
+        className="mt-3 w-full py-4 text-sm transition-all focus:ring-2 focus:ring-accent-primary focus:ring-offset-3 focus:ring-offset-background-body focus:outline-none md:mt-0 md:w-auto"
         onClick={() => setSearchInput("")}
       >
         Clear Input

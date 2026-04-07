@@ -1,7 +1,16 @@
 import Headline from "@/components/feature/headline";
+import { PopularCities } from "@/components/feature/popular-cities";
 import { Searchbar } from "@/components/feature/searchbar";
 
-export default function Home() {
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: Promise<{
+    unitType?: string;
+  }>;
+}) {
+  const { unitType } = await searchParams;
+
   return (
     <>
       <main>
@@ -9,6 +18,7 @@ export default function Home() {
           How&#39;s the sky looking today?
         </Headline>
         <Searchbar className="mt-8.5 md:mt-13.5" />
+        <PopularCities unitType={unitType} className="mt-6.5" />
       </main>
     </>
   );

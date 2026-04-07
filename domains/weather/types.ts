@@ -81,4 +81,5 @@ export type WeatherParams = {
   lat?: string;
   lon?: string;
   tzone?: string;
+  unitType?: string;
 };

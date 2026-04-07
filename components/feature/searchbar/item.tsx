@@ -19,12 +19,16 @@ export function Item({
     <Autocomplete.Item
       value={location}
       onClick={onClickHandler}
-      className="cursor-pointer rounded-lg border border-background-primary p-1.75 text-sm data-highlighted:border-border data-highlighted:bg-background-primary-hover"
+      className="group relative cursor-pointer rounded-t-lg border border-background-primary p-1.75 text-sm data-highlighted:border-border data-highlighted:bg-background-primary-hover"
     >
       <div className="flex flex-col">
         <span>{location.name}</span>
         <span className="text-xs text-text-tertiary">{locationDetails}</span>
       </div>
+      <span
+        className="absolute bottom-0 left-0 h-px w-full origin-center scale-0 bg-text-tertiary opacity-0 transition-all delay-75 duration-300 ease-out group-hover:scale-100 group-hover:opacity-100"
+        aria-hidden
+      />
     </Autocomplete.Item>
   );
 }

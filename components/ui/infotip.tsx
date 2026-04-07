@@ -21,11 +21,15 @@ export default function Infotip({
       <Portal>
         <Positioner side="top" sideOffset={forOverview ? -15 : 0}>
           <Popup
-            className={clsx("max-w-35 rounded-md border shadow-xl", {
-              "border-accent-primary bg-accent-primary px-2.5 py-1.5":
-                forOverview,
-              "border-border bg-background-primary px-1.5 py-1": !forOverview,
-            })}
+            className={clsx(
+              "max-w-35 rounded-md border shadow-xl",
+              "origin-top transition-[transform,scale,opacity] data-ending-style:scale-90 data-ending-style:opacity-0 data-starting-style:scale-90 data-starting-style:opacity-0",
+              {
+                "border-accent-primary bg-accent-primary px-2.5 py-1.5":
+                  forOverview,
+                "border-border bg-background-primary px-1.5 py-1": !forOverview,
+              },
+            )}
           >
             <Description className="text-center text-xs text-text-primary">
               {description}
