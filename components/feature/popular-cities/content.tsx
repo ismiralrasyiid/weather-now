@@ -45,6 +45,28 @@ export default async function Content({
   }
 }
 
+function getApparentTemperature(
+  data: Pick<OpenMeteoWeatherResponse, "current" | "current_units">,
+): string {
+  return `Feels like ${Math.round(data.current.apparent_temperature)}${data.current_units.apparent_temperature}`;
+}
+
+function getApparentTemperatureComparison(
+  data: Pick<OpenMeteoWeatherResponse, "current" | "current_units">,
+): string {
+  if (
+    Math.round(data.current.apparent_temperature) >
+    Math.round(data.current.temperature_2m)
+  )
+    return "🔥 Hotter than usual";
+  if (
+    Math.round(data.current.apparent_temperature) <
+    Math.round(data.current.temperature_2m)
+  )
+    return "❄️ Colder than usual";
+  return "🌡️ Feels the same";
+}
+
 function RenderSuccessRequest({
   cityName,
   data,
@@ -79,9 +101,9 @@ function RenderSuccessRequest({
         </div>
 
         <p className="text-sm text-white/80">
-          {`Feels like ${Math.round(data.current.apparent_temperature)}${data.current_units.apparent_temperature}`}
+          {getApparentTemperature(data)}
           {" - "}
-          {`${Math.round(data.current.apparent_temperature) > Math.round(data.current.temperature_2m) ? "🔥 hotter" : "❄️ colder"} than usual`}
+          {getApparentTemperatureComparison(data)}
         </p>
       </div>
     </div>
