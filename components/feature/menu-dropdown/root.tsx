@@ -37,7 +37,7 @@ export default function MenuDropdown() {
                 Switch to <span className="capitalize">{toSwitchUnitType}</span>
               </Menu.Item>
               <span
-                className="absolute bottom-0 left-0 h-px w-0 bg-white transition-all duration-200 group-hover:w-full"
+                className="absolute bottom-0 left-0 h-px w-0 bg-text-tertiary transition-all duration-200 group-hover:w-full"
                 aria-hidden
               />
             </Link>

@@ -26,7 +26,7 @@ export function Item({
         <span className="text-xs text-text-tertiary">{locationDetails}</span>
       </div>
       <span
-        className="absolute bottom-0 left-0 h-px w-full origin-center scale-0 bg-text-secondary opacity-0 transition-all delay-75 duration-300 ease-out group-hover:scale-100 group-hover:opacity-100"
+        className="absolute bottom-0 left-0 h-px w-full origin-center scale-0 bg-text-tertiary opacity-0 transition-all delay-75 duration-300 ease-out group-hover:scale-100 group-hover:opacity-100"
         aria-hidden
       />
     </Autocomplete.Item>
