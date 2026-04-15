@@ -35,3 +35,7 @@ export function getDayIndexByTZ(timeZone: string | null): number {
   const tzDate = new Date().toLocaleString("en-US", { timeZone });
   return new Date(tzDate).getDay();
 }
+
+export function slice24Hours<T>(arr: readonly T[]): T[] {
+  return arr.slice(0, 24);
+}
