@@ -32,3 +32,12 @@ export type Insight<TRuleType extends RuleType> = {
 };
 
 export type AnyInsight = Insight<RuleType>;
+
+export type EngineData = {
+  hourly: {
+    temperature: number[];
+  };
+  units: {
+    temperature: string;
+  };
+};
