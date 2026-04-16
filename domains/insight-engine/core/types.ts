@@ -1,10 +1,11 @@
+export type Rule = (data: EngineData) => AnyInsight | null;
 type RuleType = keyof RuleMap;
 type RuleMap = {
   temperature_high: {
     category: "temperature";
     signals: {
       maxTemp: number;
-      feelsLike: number;
+      hotHours: number;
     };
   };
   temperature_low: {
@@ -16,7 +17,7 @@ type RuleMap = {
   };
 };
 
-type Severity = "low" | "medium" | "high";
+export type Severity = "low" | "medium" | "high";
 
 export type Insight<TRuleType extends RuleType> = {
   id: string;
