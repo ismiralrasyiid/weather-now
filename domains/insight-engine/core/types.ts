@@ -1,11 +1,16 @@
+import { TemperatureUnitSymbol } from "@/domains/unit";
+
 export type Rule = (data: EngineData) => AnyInsight | null;
 type RuleType = keyof RuleMap;
 type RuleMap = {
   temperature_high: {
     category: "temperature";
     signals: {
-      maxTemp: number;
-      hotHours: number;
+      temperature: {
+        max: number;
+        hotHours: number;
+        unit: TemperatureUnitSymbol;
+      };
     };
   };
   temperature_low: {
@@ -41,7 +46,7 @@ export type EngineData = {
     time: string[];
   };
   units: {
-    temperature: string;
+    temperature: TemperatureUnitSymbol;
     time: string;
   };
   timezone: string;
