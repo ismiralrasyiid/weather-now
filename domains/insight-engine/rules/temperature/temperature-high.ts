@@ -1,4 +1,6 @@
-import { EngineData, Insight, Severity } from "../../core/types";
+import { EngineData, Insight, Severity, Timeframe } from "../../core/types";
+import { getSeverityFromThreshold } from "../../core/utils/get-severity-from-threshold";
+import { getTimeframeFromIndices } from "../../core/utils/get-timeframe-from-indices";
 
 const MIN_HOT_HOURS = 3;
 const MAX_HOT_HOURS = 6;
@@ -27,22 +29,8 @@ export function temperatureHighRule(
     return null;
   }
 
-  const startIndex = hotIndices[0];
-  const endIndex = hotIndices[hotIndices.length - 1];
-
-  const timeframe = {
-    start: times[startIndex],
-    end: times[endIndex],
-  };
-
-  let severity: Severity = "low";
-
-  if (maxTemp >= threshold.high) {
-    severity = "high";
-  } else if (maxTemp >= threshold.medium) {
-    severity = "medium";
-  }
-
+  const timeframe: Timeframe = getTimeframeFromIndices(times, hotIndices);
+  const severity: Severity = getSeverityFromThreshold(maxTemp, threshold);
   const confidence = Math.min(1, hotHours / MAX_HOT_HOURS);
 
   return {

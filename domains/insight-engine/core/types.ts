@@ -33,6 +33,10 @@ type RuleMap = {
 };
 
 export type Severity = "low" | "medium" | "high";
+export type Timeframe = {
+  start: string;
+  end: string;
+};
 
 export type Insight<TRuleType extends RuleType> = {
   id: string;
