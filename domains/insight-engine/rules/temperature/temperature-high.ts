@@ -4,13 +4,27 @@ export function temperatureHighRule(
   data: EngineData,
 ): Insight<"temperature_high"> | null {
   const temps = data.hourly.temperature;
+  const times = data.hourly.time;
 
   const maxTemp = Math.max(...temps);
-  const hotHours = temps.filter((t) => t >= 33).length;
+
+  const hotIndexes = temps
+    .map((t, i) => (t >= 33 ? i : -1))
+    .filter((i) => i !== -1);
+
+  const hotHours = hotIndexes.length;
 
   if (maxTemp < 33 || hotHours < 3) {
     return null;
   }
+
+  const startIndex = hotIndexes[0];
+  const endIndex = hotIndexes[hotIndexes.length - 1];
+
+  const timeframe = {
+    start: times[startIndex],
+    end: times[endIndex],
+  };
 
   let severity: Severity = "low";
 
@@ -28,10 +42,8 @@ export function temperatureHighRule(
     category: "temperature",
     severity,
     confidence,
-    timeframe: {
-      start: 0,
-      end: 24,
-    },
+    timeframe,
+    timezone: data.timezone,
     signals: {
       maxTemp,
       hotHours,
