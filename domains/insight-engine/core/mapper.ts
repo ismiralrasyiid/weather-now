@@ -13,17 +13,23 @@ export function mapEngineData(
   const hasValidTemps =
     temperatures && temperatures.length >= 24 && temperatureUnit;
 
+  const apparentTemperatures = data.hourly?.apparent_temperature;
+  const hasValidApparentTemperatures =
+    apparentTemperatures && apparentTemperatures.length >= 24;
+
   const times = data.hourly?.time;
   const timeUnit = data.hourly_units?.time;
   const hasValidTimes = times && times.length >= 24 && timeUnit;
 
   if (!hasValidTemps) return null;
+  if (!hasValidApparentTemperatures) return null;
   if (!hasValidTimes) return null;
   if (!data.timezone) return null;
 
   return {
     hourly: {
       temperature: slice24Hours(temperatures),
+      apparentTemperature: slice24Hours(apparentTemperatures),
       time: slice24Hours(times),
     },
     units: {

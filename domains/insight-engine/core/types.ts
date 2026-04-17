@@ -43,6 +43,7 @@ export type AnyInsight = Insight<RuleType>;
 export type EngineData = {
   hourly: {
     temperature: number[];
+    apparentTemperature: number[];
     time: string[];
   };
   units: {
