@@ -20,6 +20,16 @@ type RuleMap = {
       feelsLike: number;
     };
   };
+  feelslike_high: {
+    category: "temperature";
+    signals: {
+      feelsLike: {
+        max: number;
+        hotHours: number;
+        unit: TemperatureUnitSymbol;
+      };
+    };
+  };
 };
 
 export type Severity = "low" | "medium" | "high";
