@@ -46,6 +46,7 @@ export type OpenMeteoHourly = Readonly<{
   time: ReadonlyArray<string>;
   temperature_2m: ReadonlyArray<number>;
   weather_code: ReadonlyArray<number>;
+  apparent_temperature: ReadonlyArray<number>;
 }>;
 
 export type OpenMeteoDailyUnits = Readonly<{

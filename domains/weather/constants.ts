@@ -12,6 +12,7 @@ export const openMeteoCurrentWeatherVariables = [
 export const openMeteoHourlyWeatherVariables = [
   "temperature_2m",
   "weather_code",
+  "apparent_temperature",
 ].join(",");
 
 export const openMeteoDailyWeatherVariables = [
