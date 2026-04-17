@@ -26,9 +26,10 @@ export type Insight<TRuleType extends RuleType> = {
   severity: Severity;
   confidence: number;
   timeframe: {
-    start: number;
-    end: number;
+    start: string;
+    end: string;
   };
+  timezone: string;
   signals: RuleMap[TRuleType]["signals"];
 };
 
