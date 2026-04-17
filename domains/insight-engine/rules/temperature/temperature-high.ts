@@ -1,25 +1,34 @@
 import { EngineData, Insight, Severity } from "../../core/types";
 
+const MIN_HOT_HOURS = 3;
+const MAX_HOT_HOURS = 6;
+const THRESHOLD_BY_UNIT = {
+  "°C": { low: 33, medium: 35, high: 37 },
+  "°F": { low: 91, medium: 95, high: 99 },
+} as const;
+
 export function temperatureHighRule(
   data: EngineData,
 ): Insight<"temperature_high"> | null {
   const temps = data.hourly.temperature;
   const times = data.hourly.time;
+  const unit = data.units.temperature;
 
   const maxTemp = Math.max(...temps);
+  const threshold = THRESHOLD_BY_UNIT[unit];
 
-  const hotIndexes = temps
-    .map((t, i) => (t >= 33 ? i : -1))
+  const hotIndices = temps
+    .map((t, i) => (t >= threshold.low ? i : -1))
     .filter((i) => i !== -1);
 
-  const hotHours = hotIndexes.length;
+  const hotHours = hotIndices.length;
 
-  if (maxTemp < 33 || hotHours < 3) {
+  if (maxTemp < threshold.low || hotHours < MIN_HOT_HOURS) {
     return null;
   }
 
-  const startIndex = hotIndexes[0];
-  const endIndex = hotIndexes[hotIndexes.length - 1];
+  const startIndex = hotIndices[0];
+  const endIndex = hotIndices[hotIndices.length - 1];
 
   const timeframe = {
     start: times[startIndex],
@@ -28,13 +37,13 @@ export function temperatureHighRule(
 
   let severity: Severity = "low";
 
-  if (maxTemp >= 36) {
+  if (maxTemp >= threshold.high) {
     severity = "high";
-  } else if (maxTemp >= 34) {
+  } else if (maxTemp >= threshold.medium) {
     severity = "medium";
   }
 
-  const confidence = Math.min(1, hotHours / 6);
+  const confidence = Math.min(1, hotHours / MAX_HOT_HOURS);
 
   return {
     id: "temperature-high",
@@ -45,8 +54,11 @@ export function temperatureHighRule(
     timeframe,
     timezone: data.timezone,
     signals: {
-      maxTemp,
-      hotHours,
+      temperature: {
+        max: Math.round(maxTemp),
+        hotHours,
+        unit,
+      },
     },
   };
 }
