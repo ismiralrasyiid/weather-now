@@ -33,6 +33,16 @@ type RuleMap = {
       };
     };
   };
+  feelslike_peak_hours: {
+    category: "temperature";
+    signals: {
+      peak: {
+        feelsLike: number;
+        duration: number;
+        unit: TemperatureUnitSymbol;
+      };
+    };
+  };
 };
 
 export type Severity = "low" | "medium" | "high";
