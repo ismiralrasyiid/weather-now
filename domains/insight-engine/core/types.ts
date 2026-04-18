@@ -16,8 +16,11 @@ type RuleMap = {
   temperature_low: {
     category: "temperature";
     signals: {
-      minTemp: number;
-      feelsLike: number;
+      temperature: {
+        min: number;
+        coldHours: number;
+        unit: TemperatureUnitSymbol;
+      };
     };
   };
   feelslike_high: {
