@@ -43,6 +43,24 @@ type RuleMap = {
       };
     };
   };
+  temperature_feelslike_gap: {
+    category: "temperature";
+    signals: {
+      feelsLikeDelta: {
+        max: number;
+        avg: number;
+        unit: TemperatureUnitSymbol;
+      };
+      temperature: {
+        avg: number;
+        unit: TemperatureUnitSymbol;
+      };
+      feelsLike: {
+        avg: number;
+        unit: TemperatureUnitSymbol;
+      };
+    };
+  };
 };
 
 export type Severity = "low" | "medium" | "high";
