@@ -1,3 +1,4 @@
+import { DayPeriod } from "@/domains/time";
 import { TemperatureUnitSymbol } from "@/domains/unit";
 
 export type Rule = (data: EngineData) => AnyInsight | null;
@@ -58,6 +59,25 @@ type RuleMap = {
       feelsLike: {
         avg: number;
         unit: TemperatureUnitSymbol;
+      };
+    };
+  };
+  comfortable_window: {
+    category: "temperature";
+    signals: {
+      comfortWindow: {
+        temperature: {
+          avg: number;
+          unit: TemperatureUnitSymbol;
+        };
+        feelsLike: {
+          avg: number;
+          unit: TemperatureUnitSymbol;
+        };
+        duration: {
+          hours: number;
+          type: DayPeriod;
+        };
       };
     };
   };

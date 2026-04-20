@@ -1,4 +1,5 @@
 import { Rule } from "../core/types";
+import { comfortableWindowRule } from "./temperature/comfortable-window";
 import { feelsLikeHighRule } from "./temperature/feelslike-high";
 import { feelsLikePeakHoursRule } from "./temperature/feelslike-peak-hours";
 import { temperatureFeelsLikeGapRule } from "./temperature/temperature-feelslike-gap";
@@ -11,6 +12,7 @@ export const temperatureRules: Rule[] = [
   feelsLikePeakHoursRule,
   temperatureFeelsLikeGapRule,
   temperatureLowRule,
+  comfortableWindowRule,
 ];
 
 export const allRules: Rule[] = [...temperatureRules];
