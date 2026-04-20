@@ -13,6 +13,7 @@ export const openMeteoHourlyWeatherVariables = [
   "temperature_2m",
   "weather_code",
   "apparent_temperature",
+  "precipitation_probability",
 ].join(",");
 
 export const openMeteoDailyWeatherVariables = [
