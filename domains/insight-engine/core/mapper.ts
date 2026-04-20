@@ -21,6 +21,9 @@ export function mapEngineData(
   const hasValidPrecipitationProbabilities =
     precipitationProbabilities && precipitationProbabilities.length >= 24;
 
+  const weatherCodes = data.hourly?.weather_code;
+  const hasValidWeatherCodes = weatherCodes && weatherCodes.length >= 24;
+
   const times = data.hourly?.time;
   const timeUnit = data.hourly_units?.time;
   const hasValidTimes = times && times.length >= 24 && timeUnit;
@@ -28,6 +31,7 @@ export function mapEngineData(
   if (!hasValidTemps) return null;
   if (!hasValidApparentTemperatures) return null;
   if (!hasValidPrecipitationProbabilities) return null;
+  if (!hasValidWeatherCodes) return null;
   if (!hasValidTimes) return null;
   if (!data.timezone) return null;
 
@@ -36,6 +40,7 @@ export function mapEngineData(
       temperature: slice24Hours(temperatures),
       apparentTemperature: slice24Hours(apparentTemperatures),
       precipitationProbability: slice24Hours(precipitationProbabilities),
+      weatherCode: slice24Hours(weatherCodes),
       time: slice24Hours(times),
     },
     units: {

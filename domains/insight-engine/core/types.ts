@@ -110,6 +110,7 @@ export type EngineData = {
     temperature: number[];
     apparentTemperature: number[];
     precipitationProbability: number[];
+    weatherCode: number[];
     time: string[];
   };
   units: {
