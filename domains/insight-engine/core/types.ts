@@ -109,6 +109,7 @@ export type EngineData = {
   hourly: {
     temperature: number[];
     apparentTemperature: number[];
+    precipitationProbability: number[];
     time: string[];
   };
   units: {
