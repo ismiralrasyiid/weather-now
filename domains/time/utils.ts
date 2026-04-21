@@ -1,4 +1,4 @@
-import { DayPeriod } from "./types";
+import { ActiveDayPeriod, DayPeriod } from "./types";
 
 const hourFormatter = new Intl.DateTimeFormat("en-US", {
   hour: "numeric",
@@ -53,6 +53,14 @@ export function getDayPeriod(hour: number): DayPeriod {
   if (hour < 21) return "evening";
 
   return "night";
+}
+
+export function assertActiveDayPeriod(
+  period: DayPeriod,
+): asserts period is ActiveDayPeriod {
+  if (period === "night") {
+    throw new Error("Unexpected night period");
+  }
 }
 
 export function getHourFromDateString(dateString: string): number {
