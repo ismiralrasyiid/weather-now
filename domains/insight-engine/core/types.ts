@@ -81,6 +81,21 @@ type RuleMap = {
       };
     };
   };
+  weather_event: {
+    category: "weather";
+    signals: {
+      weatherEvent: {
+        type: "drizzle" | "rain" | "storm" | "snow" | "other";
+        description: string;
+        severity: Severity;
+        durationHours: number;
+        peak: {
+          time: string;
+          probability: number;
+        };
+      };
+    };
+  };
 };
 
 export type Severity = "low" | "medium" | "high";
