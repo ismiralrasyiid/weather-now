@@ -2,7 +2,7 @@ import { DayPeriod } from "@/domains/time";
 import { TemperatureUnitSymbol } from "@/domains/unit";
 
 export type Rule = (data: EngineData) => AnyInsight | null;
-type RuleType = keyof RuleMap;
+export type RuleType = keyof RuleMap;
 type RuleMap = {
   temperature_high: {
     category: "temperature";
@@ -133,4 +133,14 @@ export type EngineData = {
     time: string;
   };
   timezone: string;
+};
+
+export type InsightMessage = {
+  id: string;
+  title: string;
+  description: string;
+  icon: string;
+  action: string;
+  confidence: number;
+  severity: Severity;
 };
