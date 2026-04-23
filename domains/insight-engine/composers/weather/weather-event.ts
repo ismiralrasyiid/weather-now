@@ -2,7 +2,7 @@ import { formatHourRange } from "@/domains/time";
 import { Insight, InsightMessage, Severity } from "../../core/types";
 import { createInsightMessage } from "../create-insight-message";
 
-type WeatherType = "rain" | "storm" | "snow" | "wind" | "fog" | "other";
+type WeatherType = "rain" | "storm" | "snow" | "drizzle" | "other";
 
 const WEATHER_META: Record<
   WeatherType,
@@ -26,13 +26,9 @@ const WEATHER_META: Record<
     icon: "❄️",
     action: () => "Dress warmly and watch for slippery surfaces",
   },
-  wind: {
-    icon: "💨",
-    action: () => "Secure loose items and be cautious outdoors",
-  },
-  fog: {
-    icon: "🌫️",
-    action: () => "Allow extra travel time due to reduced visibility",
+  drizzle: {
+    icon: "🌦️",
+    action: () => "Bring an umbrella just in case",
   },
   other: {
     icon: "🌦️",
@@ -59,15 +55,12 @@ export function composeWeatherEvent(
 
   const { type, description, durationHours, peak } = event;
 
-  const weatherType = (type as WeatherType) ?? "other";
-  const meta = WEATHER_META[weatherType];
+  const meta = WEATHER_META[type];
 
   const timeLabel = formatHourRange(insight.timeframe);
   const hourLabel = durationHours === 1 ? "hour" : "hours";
 
-  const title = `${capitalize(
-    weatherType !== "other" ? weatherType : description,
-  )} expected`;
+  const title = `${capitalize(type !== "other" ? type : description)} expected`;
 
   const descriptionText = `${description} between ${timeLabel}, lasting around ${durationHours} ${hourLabel}. Peak intensity around ${formatPeakTime(
     peak.time,
