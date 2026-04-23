@@ -27,7 +27,7 @@ export default function Card({
         />
 
         {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/30 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/85 via-transparent to-black/60" />
 
         <Suspense fallback={<Fallback name={city.name} />}>
           <Content city={city} unitType={unitType} />
