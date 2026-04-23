@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import * as motion from "motion/react-client";
+import { AnimatePresence, motion } from "framer-motion";
 import { InsightMessage } from "@/domains/insight-engine/core/types";
 import clsx from "clsx";
 
@@ -29,17 +29,19 @@ export default function InsightRotator({
       onMouseLeave={() => setIsHovered(false)}
       className="relative"
     >
-      <motion.div
-        key={index}
-        initial={{ opacity: 0, x: -2 }}
-        animate={{ opacity: 1, x: 0 }}
-        exit={{ opacity: 0, x: 2 }}
-        transition={{ duration: 0.5 }}
-      >
-        <p className="line-clamp-2 text-sm text-text-secondary">
-          {messages[index].description}
-        </p>
-      </motion.div>
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.div
+          key={index}
+          initial={{ opacity: 0, x: -6, filter: "blur(2px)" }}
+          animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+          exit={{ opacity: 0, x: 6, filter: "blur(2px)" }}
+          transition={{ duration: 0.3 }}
+        >
+          <p className="line-clamp-2 text-sm text-text-secondary">
+            {messages[index].description}
+          </p>
+        </motion.div>
+      </AnimatePresence>
       {messages.length > 1 && (
         <div className="absolute left-1/2 flex grow -translate-x-1/2 justify-center gap-1 text-xs">
           {messages.map((message, i) => (
