@@ -65,7 +65,7 @@ function RenderSuccessRequest({
   return (
     <>
       <div className="absolute top-0 p-4 text-white">
-        <h3 className="text-md mb-1.5 font-semibold tracking-wide">
+        <h3 className="text-md mb-1.25 font-semibold tracking-wide">
           {cityName}
         </h3>
 
