@@ -8,14 +8,16 @@ export default function Infotip({
   children,
   description,
   forOverview,
+  className,
 }: {
   children: React.ReactNode;
   description: string;
   forOverview?: boolean;
+  className?: string;
 }) {
   return (
     <Root>
-      <Trigger openOnHover delay={30}>
+      <Trigger className={clsx(className)} openOnHover delay={30}>
         {children}
       </Trigger>
       <Portal>
