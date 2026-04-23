@@ -1,6 +1,7 @@
 import { DailyForecasts } from "@/components/feature/daily-forecasts";
 import Headline from "@/components/feature/headline";
-import WeatherOverview, {
+import {
+  WeatherOverview,
   WeatherOverviewData,
 } from "@/components/feature/weather-overview";
 import { HourlyForecasts } from "@/components/feature/hourly-forecasts";
