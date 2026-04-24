@@ -1,4 +1,6 @@
 import Infotip from "@/components/ui/infotip";
+import { runInsightEngine } from "@/domains/insight-engine/core/engine";
+import { allRules } from "@/domains/insight-engine/rules/registry";
 import { City } from "@/domains/location";
 import {
   buildWeatherSearchParams,
@@ -8,6 +10,8 @@ import {
 } from "@/domains/weather";
 import clsx from "clsx";
 import Image from "next/image";
+import InsightRotator from "./insight-rotator";
+import { resolveInsightMessages } from "@/domains/insight-engine/composers/registry";
 
 type WeatherResult =
   | { ok: true; data: OpenMeteoWeatherResponse }
@@ -45,28 +49,6 @@ export default async function Content({
   }
 }
 
-function getApparentTemperature(
-  data: Pick<OpenMeteoWeatherResponse, "current" | "current_units">,
-): string {
-  return `Feels like ${Math.round(data.current.apparent_temperature)}${data.current_units.apparent_temperature}`;
-}
-
-function getApparentTemperatureComparison(
-  data: Pick<OpenMeteoWeatherResponse, "current" | "current_units">,
-): string {
-  if (
-    Math.round(data.current.apparent_temperature) >
-    Math.round(data.current.temperature_2m)
-  )
-    return "🔥 Hotter than usual";
-  if (
-    Math.round(data.current.apparent_temperature) <
-    Math.round(data.current.temperature_2m)
-  )
-    return "❄️ Colder than usual";
-  return "🌡️ Feels the same";
-}
-
 function RenderSuccessRequest({
   cityName,
   data,
@@ -77,19 +59,24 @@ function RenderSuccessRequest({
   const weather = mapWeatherCode(data.current.weather_code);
   const isSunnyIcon = weather.image === "/icon-sunny.webp";
 
-  return (
-    <div className="absolute bottom-0 p-4 text-white">
-      <h3 className="text-lg font-semibold">{cityName}</h3>
+  const insights = runInsightEngine(data, allRules);
+  const messages = resolveInsightMessages(insights, data);
 
-      <div className="h-12">
+  return (
+    <>
+      <div className="absolute top-0 p-4 text-white">
+        <h3 className="text-md mb-1.25 font-semibold tracking-wide">
+          {cityName}
+        </h3>
+
         <div className="flex items-center gap-1">
-          <p className="text-xl font-bold">{`${Math.round(data.current.temperature_2m)}${data.current_units.temperature_2m}`}</p>
+          <p className="text-5xl font-bold tracking-wide">{`${Math.round(data.current.temperature_2m)}${data.current_units.temperature_2m}`}</p>
           <Infotip description={weather.description}>
-            <div className="relative size-7 overflow-hidden">
+            <div className="relative size-15 overflow-hidden">
               <Image
                 className={clsx({
-                  "absolute -top-1/4 size-11 object-cover": isSunnyIcon,
-                  "size-7": !isSunnyIcon,
+                  "absolute -top-1/4 size-22 object-cover": isSunnyIcon,
+                  "size-15": !isSunnyIcon,
                 })}
                 src={weather.image}
                 alt={weather.description}
@@ -99,14 +86,12 @@ function RenderSuccessRequest({
             </div>
           </Infotip>
         </div>
-
-        <p className="text-sm text-white/80">
-          {getApparentTemperature(data)}
-          {" - "}
-          {getApparentTemperatureComparison(data)}
-        </p>
       </div>
-    </div>
+
+      <div className="absolute bottom-0 px-4 pb-5">
+        <InsightRotator messages={messages} />
+      </div>
+    </>
   );
 }
 

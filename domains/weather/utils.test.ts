@@ -16,6 +16,8 @@ function generateMockWeatherData(
       ),
     ).flat(),
     temperature_2m: Array.from({ length: 7 * 24 }, () => 30.6),
+    apparent_temperature: Array.from({ length: 7 * 24 }, () => 31.6),
+    precipitation_probability: Array.from({ length: 7 * 24 }, () => 80),
     weather_code: Array.from({ length: 7 * 24 }, () =>
       withInvalidWeatherCode ? -1 : 1,
     ),
