@@ -38,7 +38,7 @@ export default function InsightRotator({
           exit={{ opacity: 0, x: 6, filter: "blur(2px)" }}
           transition={{ duration: 0.3 }}
         >
-          <Content />
+          <Content message={messages[index]} />
         </motion.div>
       </AnimatePresence>
       {messages.length > 1 && (
