@@ -2,15 +2,19 @@ import { InsightMessage } from "@/domains/insight-engine/core/types";
 
 export default function Content({ message }: { message: InsightMessage }) {
   return (
-    <div className="flex h-full items-center text-sm">
-      <div className="flex min-w-1/2 items-center gap-4 p-6">
-        <div className="text-2xl">{message.icon}</div>
+    <div className="h-full p-6 text-sm md:flex md:items-center md:p-0">
+      <div className="md:flex md:min-w-1/2 md:items-center md:gap-4 md:p-6">
+        <span className="hidden text-2xl md:block" aria-hidden>
+          {message.icon}
+        </span>
         <div>
-          <p className="font-semibold">{message.title}</p>
-          <p className="text-text-secondary">{message.action}</p>
+          <p className="mb-2.5 text-center font-semibold md:mb-0 md:text-left">
+            {message.title}
+          </p>
+          <p className="mb-1 text-text-secondary md:mb-0">{message.action}</p>
         </div>
       </div>
-      <div className="flex h-20 items-center border-l-2 border-white/10 px-6 text-text-secondary">
+      <div className="h-20 text-text-secondary md:flex md:items-center md:border-l-2 md:border-white/10 md:px-6">
         <p className="line-clamp-4">{message.description}</p>
       </div>
     </div>

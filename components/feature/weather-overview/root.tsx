@@ -28,7 +28,7 @@ export function WeatherOverview({
   return (
     <div
       className={clsx(
-        "h-hero-section rounded-xl bg-[url(@/public/bg-today-small.svg)] bg-cover bg-center p-4 md:bg-[url(@/public/bg-today-large.svg)] md:px-8 md:pb-6",
+        "rounded-xl bg-[url(@/public/bg-today-small.svg)] bg-cover bg-center p-4 pb-6 md:h-hero-section md:bg-[url(@/public/bg-today-large.svg)] md:px-8",
         className,
       )}
     >

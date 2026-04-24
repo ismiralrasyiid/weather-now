@@ -37,7 +37,7 @@ export default function InsightRotator({
           animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
           exit={{ opacity: 0, x: 6, filter: "blur(2px)" }}
           transition={{ duration: 0.3 }}
-          className="h-28 rounded-xl bg-linear-to-b from-white/5 via-white/2 to-white/5"
+          className="rounded-xl bg-linear-to-b from-white/5 via-white/2 to-white/5 md:h-28"
         >
           <Content message={messages[index]} />
         </motion.div>
