@@ -20,6 +20,9 @@ import {
 } from "@/domains/weather";
 import { formatDate } from "@/domains/time";
 import { notFound } from "next/navigation";
+import { runInsightEngine } from "@/domains/insight-engine/core/engine";
+import { allRules } from "@/domains/insight-engine/rules/registry";
+import { resolveInsightMessages } from "@/domains/insight-engine/composers/registry";
 
 export default async function Weather({
   params,
@@ -51,6 +54,8 @@ export default async function Weather({
     current: data.current,
     current_units: data.current_units,
   });
+  const insights = runInsightEngine(data, allRules);
+  const messages = resolveInsightMessages(insights, data);
 
   const dailyForecasts = getDailyForecasts(data.daily);
 
@@ -67,6 +72,7 @@ export default async function Weather({
           <WeatherOverview
             className="mt-7 lg:mt-0"
             overview={weatherOverview}
+            messages={messages}
           />
           <WeatherDetails className="mt-5 lg:mt-8.5" metrics={weatherMetrics} />
           <DailyForecasts
