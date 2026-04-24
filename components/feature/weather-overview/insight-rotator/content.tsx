@@ -2,7 +2,7 @@ import { InsightMessage } from "@/domains/insight-engine/core/types";
 
 export default function Content({ message }: { message: InsightMessage }) {
   return (
-    <div className="flex items-center text-sm">
+    <div className="flex h-full items-center text-sm">
       <div className="flex min-w-1/2 items-center gap-4 p-6">
         <div className="text-2xl">{message.icon}</div>
         <div>
