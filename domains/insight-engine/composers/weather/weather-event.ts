@@ -1,4 +1,4 @@
-import { formatHourRange } from "@/domains/time";
+import { formatHour12FromDate, formatHourRange } from "@/domains/time";
 import { Insight, InsightMessage, Severity } from "../../core/types";
 import { createInsightMessage } from "../create-insight-message";
 
@@ -36,14 +36,6 @@ const WEATHER_META: Record<
   },
 };
 
-function formatPeakTime(time: string, timezone: string) {
-  return new Date(time).toLocaleTimeString("en-US", {
-    hour: "numeric",
-    minute: "2-digit",
-    timeZone: timezone,
-  });
-}
-
 function capitalize(str: string) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
@@ -62,9 +54,8 @@ export function composeWeatherEvent(
 
   const title = `${capitalize(type !== "other" ? type : description)} expected`;
 
-  const descriptionText = `${description} between ${timeLabel}, lasting around ${durationHours} ${hourLabel}. Peak intensity around ${formatPeakTime(
+  const descriptionText = `${description} between ${timeLabel}, lasting around ${durationHours} ${hourLabel}. Peak intensity around ${formatHour12FromDate(
     peak.time,
-    insight.timezone,
   )} (~${peak.probability}% chance).`;
 
   return createInsightMessage(insight, {
