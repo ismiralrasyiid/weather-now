@@ -6,7 +6,7 @@ export function WeatherOverviewSkeleton({ className }: { className?: string }) {
   return (
     <Skeleton
       className={clsx(
-        "flex h-hero-section w-full items-center justify-center gap-2 rounded-xl",
+        "flex h-100.25 w-full items-center justify-center gap-2 rounded-xl sm:h-95.25 md:h-hero-section",
         className,
       )}
     >

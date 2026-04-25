@@ -8,10 +8,12 @@ export default function Content({ message }: { message: InsightMessage }) {
           {message.icon}
         </span>
         <div>
-          <p className="mb-2.5 text-center font-semibold md:mb-0 md:text-left">
+          <p className="mb-5 text-center font-semibold md:mb-0 md:text-left">
             {message.title}
           </p>
-          <p className="mb-1 text-text-secondary md:mb-0">{message.action}</p>
+          <p className="line-clamp-2 h-10 text-text-secondary sm:h-auto">
+            {message.action}
+          </p>
         </div>
       </div>
       <div className="h-20 text-text-secondary md:flex md:items-center md:border-l-2 md:border-white/10 md:px-6">

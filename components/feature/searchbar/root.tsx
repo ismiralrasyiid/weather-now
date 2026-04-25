@@ -71,7 +71,12 @@ export default function Searchbar({ className }: { className?: string }) {
             placeholder="Search for a place..."
           />
           <Autocomplete.Portal>
-            <Autocomplete.Positioner sideOffset={9}>
+            <Autocomplete.Positioner
+              collisionAvoidance={{
+                side: "none",
+              }}
+              sideOffset={9}
+            >
               <Autocomplete.Popup className="w-search-popup-mobile rounded-lg border border-border bg-background-primary p-1.75 text-text-primary md:w-search-popup-desktop">
                 {showStatus ? (
                   <Status isTyping={isTyping} />
